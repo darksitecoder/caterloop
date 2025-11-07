@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="371" height="307" viewBox="0 0 371 307">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.005" y1="9.807" x2="1.001" y2="9.807" gradientUnits="objectBoundingBox">
+      <stop offset="0.003" stop-color="#e6ecf5"/>
+      <stop offset="1" stop-color="#ced7e2"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="7.025" x2="0.5" y2="5.941" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff66a9"/>
+      <stop offset="1" stop-color="#f53689"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.54" y1="6.072" x2="0.444" y2="7.107" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-4" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#aebcff"/>
+      <stop offset="0.022" stop-color="#aab7fb"/>
+      <stop offset="0.168" stop-color="#939bea"/>
+      <stop offset="0.326" stop-color="#8286dd"/>
+      <stop offset="0.5" stop-color="#7576d3"/>
+      <stop offset="0.703" stop-color="#6e6dcd"/>
+      <stop offset="1" stop-color="#6c6bcc"/>
+    </linearGradient>
+  </defs>
+  <g id="Сгруппировать_2135" data-name="Сгруппировать 2135" transform="translate(-1203 -3034)">
+    <g id="Прямоугольник_2591" data-name="Прямоугольник 2591" transform="translate(1203 3034)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="371" height="307" stroke="none"/>
+      <rect x="0.5" y="0.5" width="370" height="306" fill="none"/>
+    </g>
+    <g id="Сгруппировать_1583" data-name="Сгруппировать 1583" transform="translate(1020.718 2153.062)">
+      <path id="Контур_1553" data-name="Контур 1553" d="M347.872,1060.323c.515-.26.772-.518,1.285-.777" transform="translate(32.497 48.38)" fill="none" stroke="#ff78b7" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.612"/>
+      <g id="Сгруппировать_1478" data-name="Сгруппировать 1478" transform="translate(270.198 943.908)">
+        <path id="Контур_1554" data-name="Контур 1554" d="M312.252,1004.3H313.8" transform="translate(-252.604 -918.642)" fill="none" stroke="#ff78b7" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.612"/>
+        <path id="Контур_1555" data-name="Контур 1555" d="M354.424,949.9h-34.2v38.835h34.2Z" transform="translate(-249.267 -941.4)" fill="#b4c2d1"/>
+        <path id="Контур_1556" data-name="Контур 1556" d="M351.087,949.9H328.2v38.835h22.883Z" transform="translate(-245.93 -941.4)" fill="url(#linear-gradient)"/>
+        <path id="Контур_1557" data-name="Контур 1557" d="M338.995,943.908h-52.48v59.572h52.48Z" transform="translate(-263.371 -943.908)" fill="url(#linear-gradient-2)"/>
+        <path id="Контур_1558" data-name="Контур 1558" d="M333.974,943.908H298.515v59.572h35.459Z" transform="translate(-258.351 -943.908)" fill="url(#linear-gradient-3)"/>
+        <path id="Контур_1559" data-name="Контур 1559" d="M391.038,955.562H270.2v121.165h120.84Z" transform="translate(-270.198 -939.032)" fill="#8d8de2"/>
+        <path id="Контур_1560" data-name="Контур 1560" d="M381.36,955.562H293.944v121.165H381.36Z" transform="translate(-260.263 -939.032)" fill="#4a4aa0"/>
+        <path id="Контур_1561" data-name="Контур 1561" d="M286.909,955.562H270.2v121.165h16.711Z" transform="translate(-270.198 -939.032)" fill="#6c6bcc"/>
+        <path id="Контур_1562" data-name="Контур 1562" d="M303.879,1046.027H270.2v-.258l16.968-16.829Z" transform="translate(-270.198 -908.333)" fill="#a5a5f2"/>
+        <path id="Контур_1563" data-name="Контур 1563" d="M312.091,973.71a4.4,4.4,0,1,0-4.371-4.4A4.386,4.386,0,0,0,312.091,973.71Z" transform="translate(-254.5 -935.122)" fill="#272763"/>
+        <path id="Контур_1564" data-name="Контур 1564" d="M342.544,973.71a4.4,4.4,0,1,0-4.37-4.4A4.386,4.386,0,0,0,342.544,973.71Z" transform="translate(-241.758 -935.122)" fill="#272763"/>
+        <path id="Контур_1565" data-name="Контур 1565" d="M354,968.194V980.1a21.6,21.6,0,1,1-43.194,0V968.194" transform="translate(-253.21 -933.747)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.894"/>
+      </g>
+      <path id="Контур_1566" data-name="Контур 1566" d="M381.833,1013.839l-12.955-19.473v-30.66H354.009v30.66l-12.955,19.473a21.05,21.05,0,0,0-3.525,11.659v82.762a4.5,4.5,0,0,0,4.5,4.495h38.836a4.5,4.5,0,0,0,4.5-4.495V1025.5A21.05,21.05,0,0,0,381.833,1013.839Z" transform="translate(28.17 8.283)" fill="url(#linear-gradient-4)"/>
+      <rect id="Прямоугольник_2009" data-name="Прямоугольник 2009" width="15.608" height="25.536" transform="translate(381.809 967.512)" fill="#e6ecf5"/>
+      <rect id="Прямоугольник_2010" data-name="Прямоугольник 2010" width="37.68" height="47.863" transform="translate(365.699 1037.094)" fill="#e6ecf5" opacity="0.76"/>
+      <path id="Контур_1567" data-name="Контур 1567" d="M418.38,1013.839l-12.955-19.473v-30.66H390.556v30.66L377.6,1013.839a21.048,21.048,0,0,0-3.523,11.659v82.762a4.494,4.494,0,0,0,4.495,4.495h38.837a4.5,4.5,0,0,0,4.5-4.495V1025.5A21.05,21.05,0,0,0,418.38,1013.839Z" transform="translate(43.46 8.283)" fill="url(#linear-gradient-4)"/>
+      <rect id="Прямоугольник_2011" data-name="Прямоугольник 2011" width="15.608" height="25.536" transform="translate(433.647 967.512)" fill="#e6ecf5"/>
+      <rect id="Прямоугольник_2012" data-name="Прямоугольник 2012" width="37.68" height="47.863" transform="translate(422.611 1037.094)" fill="#e6ecf5" opacity="0.85"/>
+    </g>
+  </g>
+</svg>
