@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="371" height="307" viewBox="0 0 371 307">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff66a9"/>
+      <stop offset="0.32" stop-color="#ec068c"/>
+    </linearGradient>
+  </defs>
+  <g id="Сгруппировать_2137" data-name="Сгруппировать 2137" transform="translate(-357 -3034)">
+    <g id="Прямоугольник_2590" data-name="Прямоугольник 2590" transform="translate(357 3034)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="371" height="307" stroke="none"/>
+      <rect x="0.5" y="0.5" width="370" height="306" fill="none"/>
+    </g>
+    <g id="Сгруппировать_1581" data-name="Сгруппировать 1581" transform="translate(-262.772 2156.976)">
+      <path id="Контур_1568" data-name="Контур 1568" d="M875.25,1066.286,860.368,964.368H772.922l-14.884,101.919a8.3,8.3,0,0,0,8.121,9.565l50.485.017,50.487-.017A8.3,8.3,0,0,0,875.25,1066.286Z" transform="translate(30.679 7.596)" fill="#6c6bcc"/>
+      <rect id="Прямоугольник_2013" data-name="Прямоугольник 2013" width="87.549" height="28.068" rx="2.487" transform="translate(803.56 946.683)" fill="#353895"/>
+      <path id="Контур_1569" data-name="Контур 1569" d="M823.19,1075.7H841.8c4.386,0,8.722-4.244,8.06-8.58L834.949,964.8l-17.765,103.91A6.075,6.075,0,0,0,823.19,1075.7Z" transform="translate(56.093 7.782)" fill="#353895" opacity="0.66"/>
+      <path id="Контур_1570" data-name="Контур 1570" d="M811.191,1018.417H778c-1.768,0-3.225-.841-3.225-1.861V992.6c0-1.021,1.457-1.863,3.225-1.863h33.187c1.77,0,3.225.842,3.225,1.863v23.958C814.416,1017.577,812.96,1018.417,811.191,1018.417Z" transform="translate(37.909 18.922)" fill="#f5f7fd" stroke="#e4e8f5" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.494" stroke-dasharray="0.993 0.993"/>
+      <path id="Контур_1571" data-name="Контур 1571" d="M803.827,1066.286,788.943,964.368H701.5l-14.883,101.919a8.3,8.3,0,0,0,8.12,9.565l50.487.017,50.485-.017A8.3,8.3,0,0,0,803.827,1066.286Z" transform="translate(0 7.596)" fill="url(#linear-gradient)"/>
+      <rect id="Прямоугольник_2014" data-name="Прямоугольник 2014" width="87.549" height="28.068" rx="2.487" transform="translate(701.457 946.683)" fill="#b12069"/>
+      <path id="Контур_1572" data-name="Контур 1572" d="M751.766,1075.7h18.613c4.384,0,8.72-4.244,8.058-8.58L763.525,964.8l-17.765,103.91A6.075,6.075,0,0,0,751.766,1075.7Z" transform="translate(25.414 7.782)" fill="#b12069" opacity="0.66"/>
+      <path id="Контур_1573" data-name="Контур 1573" d="M740.821,1017.721H707.634c-1.767,0-3.225-.841-3.225-1.861V991.9c0-1.021,1.458-1.863,3.225-1.863h33.187c1.77,0,3.227.842,3.227,1.863v23.958C744.047,1016.881,742.59,1017.721,740.821,1017.721Z" transform="translate(7.683 18.623)" fill="#f5f7fd" stroke="#e4e8f5" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.494" stroke-dasharray="0.993 0.993"/>
+      <path id="Контур_1574" data-name="Контур 1574" d="M733.6,977.7l-16.464,92.891h11.917l12.178-93.935Z" transform="translate(13.149 12.873)" fill="#b12069" opacity="0.51"/>
+      <path id="Контур_1575" data-name="Контур 1575" d="M834.44,1094.5,819.558,992.58H732.112L717.227,1094.5a8.3,8.3,0,0,0,8.121,9.565l50.485.017,50.487-.017A8.3,8.3,0,0,0,834.44,1094.5Z" transform="translate(13.149 19.714)" fill="#eaeef9"/>
+      <rect id="Прямоугольник_2015" data-name="Прямоугольник 2015" width="87.549" height="28.068" rx="2.487" transform="translate(745.22 987.014)" fill="#a1a1e2"/>
+      <path id="Контур_1576" data-name="Контур 1576" d="M782.38,1103.912h18.611c4.386,0,8.722-4.244,8.06-8.58l-14.911-102.32-17.765,103.91A6.075,6.075,0,0,0,782.38,1103.912Z" transform="translate(38.564 19.9)" fill="#a1a1e2"/>
+      <path id="Контур_1577" data-name="Контур 1577" d="M770.381,1046.63H737.194c-1.768,0-3.225-.841-3.225-1.861V1020.81c0-1.021,1.457-1.861,3.225-1.861h33.187c1.77,0,3.225.841,3.225,1.861v23.959C773.606,1045.79,772.15,1046.63,770.381,1046.63Z" transform="translate(20.38 31.041)" fill="#fff" stroke="#e4e8f5" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.494" stroke-dasharray="0.993 0.993"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,124 @@
+/*****Covid CSS*******/
+
+.covid-hero {
+    margin-top: 10rem;
+}
+
+.covid-img {
+    object-fit: cover;
+    width: 414px;
+    height: 333px;
+    display: block;
+}
+
+.covid-hero h1 {
+    font-weight: 700;
+}
+
+p {
+    font-size: 1rem;
+    text-align: justify;
+}
+
+.safety-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.safety-title:after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 6px;
+    background: #3a5bcc;
+    border-radius: 3px;
+    margin: 4px 0 0;
+}
+
+.safety-section {
+    box-shadow: inset 0px 2px 0px 4px #3a5ccc69;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 20px;
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+h4 {
+    font-weight: 700;
+}
+
+.feature-card {
+    box-shadow: 0px 2px 0px 4px #3a5bcc;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 20px;
+    height: 200px;
+}
+
+/******Karibu Delievry CSS*******/
+
+.start-btn {
+    text-decoration: none;
+    background-color: #3a5bcc;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    font-size: 1.2rem;
+}
+
+.karibu-card {
+    border-radius: 12px;
+    height: 100%;
+    box-shadow: 0px 0px 12px 4px #0000001a;
+    padding: 10px;
+}
+.advt-card{
+    padding: 30px 40px;
+    border: 2px solid #3a5bcc;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+/*******Client Success***********/
+
+.client-card{
+    padding: 15px;
+    border: 1px solid #f4f7ff;
+    background-color: #fff;
+    box-shadow: 0 2px 7px 0 #14142b0f;
+    border-radius: 24px;
+}
+
+.client-img img{
+    border-radius: 25px 25px 0 0;
+    margin-bottom: 5px;
+}
+
+.client-name{
+    color: #2d3958;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.read-btn{
+    text-decoration: none;
+    color: #3a5bcc;
+    font-weight: 600;
+}
