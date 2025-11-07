@@ -28,7 +28,18 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- custom css -->
     <link rel="stylesheet" href="custom.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet"> -->
 
+	<link rel="stylesheet" href="fonts/icomoon/style.css">
+	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+	<link rel="stylesheet" href="css/tiny-slider.css">
+	<link rel="stylesheet" href="css/aos.css">
+	<link rel="stylesheet" href="css/flatpickr.min.css">
+	<link rel="stylesheet" href="css/glightbox.min.css">
+	<link rel="stylesheet" href="css/style.css">
     <style>
         * {
             margin: 0;
@@ -41,7 +52,7 @@
 
         }
 
-        .navbar {
+       .navbar {
             position: fixed;
             top: 0;
             left: 0;
@@ -54,7 +65,8 @@
         }
 
         .nav-container {
-            max-width: 1000px;
+            max-width: 1400px;
+            width: 100%;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -62,20 +74,10 @@
             padding: 1rem 2rem;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background-color: #3a5bcc;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 1px;
-            transition: transform 0.3s ease;
+        .nav-container .logo img{
+            width: 250px;
         }
 
-        .logo:hover {
-            transform: scale(1.05);
-        }
 
         .nav-menu {
             display: flex;
@@ -101,7 +103,7 @@
         }
 
         .nav-link:hover {
-            color: #667eea;
+            color: #FF8702;
             background: rgba(102, 126, 234, 0.1);
         }
 
@@ -124,7 +126,7 @@
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             opacity: 0;
-            visibility: hidden;
+            /* visibility: hidden; */
             transform: translateY(-10px);
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             margin-top: 0.5rem;
@@ -148,9 +150,9 @@
 
         .dropdown-item:hover {
             background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
-            border-left-color: #3a5bcc;
+            border-left-color: #FF8702;
             padding-left: 2rem;
-            color: #3a5bcc;
+            color: #FF8702;
         }
 
         .hamburger {
@@ -164,7 +166,7 @@
         .hamburger span {
             width: 28px;
             height: 3px;
-            background: #3a5bcc;
+            background: #FF8702;
             border-radius: 3px;
             transition: all 0.3s ease;
         }
@@ -184,7 +186,6 @@
         /* Demo Content */
         .content {
             max-width: 1200px;
-            width: 100%;
             margin: 3rem auto;
             padding: 2rem;
             text-align: center;
@@ -211,7 +212,9 @@
             .hamburger {
                 display: flex;
             }
-
+ .nav-container .logo img{
+            width: 200px;
+        }
             .nav-menu {
                 position: fixed;
                 right: -100%;
@@ -298,32 +301,33 @@
             display: block;
             opacity: 1;
         }
+
     </style>
 </head>
 
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">CaterLoop</div>
-
+            <div class="logo"><a href="/"><img src=" images/footer_logo.png" alt=""></a></div>
+            
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item" id="offices">
                     <a href="#" class="nav-link">For Offices</a>
                     <div class="dropdown">
-                        <a href="#" class="dropdown-item">Office Meal Programs</a>
-                        <a href="#" class="dropdown-item">On Demand Catering</a>
-                        <a href="#" class="dropdown-item">Managed Catering + Events</a>
+                        <a href=" office_meal_prog.html" class="dropdown-item">Office Meal Programs</a>
+                        <!-- <a href="#" class="dropdown-item">On Demand Catering</a> -->
+                        <a href=" managed-catering.html" class="dropdown-item">Managed Catering + Events</a>
                     </div>
                 </li>
-
+                
                 <li class="nav-item" id="restaurants">
                     <a href="#" class="nav-link">For Restaurants</a>
                     <div class="dropdown">
-                        <a href="#" class="dropdown-item">Restaurant Sign In</a>
-                        <a href="#" class="dropdown-item">Sign Up Your Restaurant</a>
+                        <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/register" class="dropdown-item">Restaurant Sign In</a>
+                        <a href=" restaurants-signup.html" class="dropdown-item">Sign Up Your Restaurant</a>
                     </div>
                 </li>
-
+                
                 <li class="nav-item" id="about">
                     <a href="#" class="nav-link">About Us</a>
                     <div class="dropdown">
@@ -331,16 +335,16 @@
                         <a href="#" class="dropdown-item">Blog</a>
                     </div>
                 </li>
-
+                
                 <li class="nav-item" id="login">
-                    <a href="#" class="nav-link">Login</a>
+                    <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/login" class="nav-link">Login</a>
                     <div class="dropdown">
-                        <a href="#" class="dropdown-item">Profile</a>
-                        <a href="#" class="dropdown-item">Logout</a>
+                        <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/login" class="dropdown-item">Profile</a>
+                        <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/login" class="dropdown-item">Logout</a>
                     </div>
                 </li>
             </ul>
-
+            
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -348,6 +352,7 @@
             </div>
         </div>
     </nav>
+
 
     <div class="overlay" id="overlay"></div>
 
@@ -451,7 +456,73 @@
         </div>
     </section>
 
+<div class="site-footer">
+		<div class="container">
 
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="widget">
+						 <div class="logo"><a href="/"><img src=" images/footer_logo.png" alt=""></a></div>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					</div> <!-- /.widget -->
+					<div class="widget">
+						<h3>Connect</h3>
+						<ul class="list-unstyled social">
+							<li><a href="#"><span class="icon-instagram"></span></a></li>
+							<li><a href="#"><span class="icon-twitter"></span></a></li>
+							<li><a href="#"><span class="icon-facebook"></span></a></li>
+							<li><a href="#"><span class="icon-linkedin"></span></a></li>
+							<li><a href="#"><span class="icon-pinterest"></span></a></li>
+							<li><a href="#"><span class="icon-dribbble"></span></a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+				<div class="col-lg-2 ml-auto">
+					<div class="widget">
+						<h3>Links</h3>
+						<ul class="list-unstyled float-left links">
+							<li><a href="#">About</a></li>
+							<li><a href="/karibu-delivery.html">Karibu Delivery as a Service</a></li>
+							<li><a href="/hungerhub-city.html">Bring hungerhub to your city</a></li>
+							<li><a href="/client-success.html">Client Success Stories</a></li>
+							<li><a href="/covid.html">COVID-19 Response</a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+				<div class="col-lg-2">
+					<div class="widget">
+						<h3>Company</h3>
+						<ul class="list-unstyled float-left links">
+							<li><a href="toronto.html">Catering in Toronto</a></li>
+							<li><a href="#">Catering in Vancouver</a></li>
+							<li><a href="#">Catering in Ottawa</a></li>
+							<li><a href="#">Catering in Mississauga</a></li>
+							<!-- <li><a href="#">Contact</a></li> -->
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+
+				<div class="col-lg-3">
+					<div class="widget">
+						<h3>Contact</h3>
+						<address>43 Raymouth Rd. Baltemoer, London 3910</address>
+						<ul class="list-unstyled links mb-4">
+							<li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+							<li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+							<li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
+						</ul>
+					</div> <!-- /.widget -->
+				</div> <!-- /.col-lg-3 -->
+
+			</div> <!-- /.row -->
+<!-- /.container -->
+		</div>
+		<!-- Preloader -->
+	
+		</div>
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
