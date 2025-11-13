@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Cost Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mx-auto p-4 sm:p-8">
+    <div class="card bg-white p-6 md:p-10 rounded-xl max-w-2xl w-full">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Delivery Cost Estimator</h1>
+
+        <!-- Input Form -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- Country Selection -->
+            <div>
+                <label for="country" class="block text-sm font-medium text-gray-700 mb-1">1. Select Country</label>
+                <select id="country" onchange="calculateCost()" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    <option value="KES">Kenya (KES)</option>
+                    <option value="USD">USA (USD)</option>
+                </select>
+            </div>
+            
+            <!-- Service Category -->
+            <div>
+                <label for="serviceCategory" class="block text-sm font-medium text-gray-700 mb-1">2. Service Category</label>
+                <select id="serviceCategory" onchange="calculateCost()" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    <option value="Spare Parts">Spare Parts Deliveries</option>
+                    <option value="Medical">Medical Deliveries</option>
+                    <option value="Documents">Documents & Parcels</option>
+                    <option value="Lightweight">Lightweight Packages</option>
+                </select>
+            </div>
+
+            <!-- Distance Input -->
+            <div>
+                <label for="distance" class="block text-sm font-medium text-gray-700 mb-1">3. Distance (km)</label>
+                <input type="number" id="distance" min="0" value="5" oninput="calculateCost()" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="e.g., 10">
+                <p class="text-xs text-gray-500 mt-1">Base rate covers up to 5km.</p>
+            </div>
+            
+            <!-- Weight Input -->
+            <div>
+                <label for="weight" class="block text-sm font-medium text-gray-700 mb-1">4. Weight (kg)</label>
+                <input type="number" id="weight" min="0" value="1" oninput="calculateCost()" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="e.g., 25">
+                <p class="text-xs text-gray-500 mt-1">Surcharge applies for > 20kg.</p>
+            </div>
+        </div>
+
+        <!-- Add-Ons Section -->
+        <div class="mb-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <h3 class="text-xl font-semibold text-blue-800 mb-3">5. Delivery Options & Add-Ons</h3>
+            <div class="space-y-3">
+                
+                <!-- Same-Day Delivery -->
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" id="sameDay" onchange="calculateCost()" class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                    <span class="ml-3 text-gray-700 font-medium">Urgency Surcharge (Same-Day Delivery)</span>
+                </label>
+
+                <!-- Additional Checkboxes -->
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" id="returnTrip" onchange="calculateCost()" class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                    <span class="ml-3 text-gray-700 font-medium">Add-On: Return Trip (40% of Base Rate)</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" id="fragileHandling" onchange="calculateCost()" class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                    <span class="ml-3 text-gray-700 font-medium">Add-On: Fragile/Special Handling & Labeling</span>
+                </label>
+                <label class="flex items-center cursor-pointer">
+                    <input type="checkbox" id="weekendDelivery" onchange="calculateCost()" class="h-5 w-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                    <span class="ml-3 text-gray-700 font-medium">Add-On: Weekend/Holiday Delivery</span>
+                </label>
+                
+                <!-- Free Add-Ons (Display Only) -->
+                <div class="text-sm text-gray-600 space-y-1 pt-2 border-t mt-3">
+                    <p>✓ WhatsApp Delivery Confirmation (Free)</p>
+                    <p>✓ Proof of Delivery (Signature) (Free)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Display -->
+        <div class="bg-indigo-600 text-white p-6 rounded-xl text-center shadow-lg">
+            <p class="text-lg uppercase font-light mb-2">Estimated Total Cost</p>
+            <p id="totalCost" class="text-5xl font-extrabold">--</p>
+            <p id="currencyDisplay" class="text-sm mt-1 opacity-80">Select options above to calculate</p>
+        </div>
+        
+        <!-- Error Message -->
+        <div id="error-message" class="mt-4 text-red-600 font-medium hidden">
+            Please enter valid numbers for Distance and Weight.
+        </div>
+    </div>
+</div>
+
+<script>
+    // Define all pricing structures for both currencies (KES is primary, USD is estimated)
+    const PRICING = {
+        KES: {
+            currencySymbol: "KES",
+            // Base, Per KM Charge, Weight Surcharge (>20kg), Same-Day Surcharge
+            rates: {
+                "Spare Parts":      { base: 200, km: 30, weight: 100, urgency: 150 },
+                "Medical":          { base: 250, km: 35, weight: 150, urgency: 200 },
+                "Documents":        { base: 150, km: 25, weight: 50, urgency: 100 },
+                "Lightweight":      { base: 180, km: 30, weight: 75, urgency: 120 },
+            },
+            // Fixed Add-Ons
+            addOns: {
+                fragile: 50,
+                weekend: 200,
+            }
+        },
+        USD: {
+            currencySymbol: "$",
+            // Estimated equivalent rates for USA
+            rates: {
+                "Spare Parts":      { base: 2.00, km: 0.30, weight: 1.00, urgency: 1.50 },
+                "Medical":          { base: 2.50, km: 0.35, weight: 1.50, urgency: 2.00 },
+                "Documents":        { base: 1.50, km: 0.25, weight: 0.50, urgency: 1.00 },
+                "Lightweight":      { base: 1.80, km: 0.30, weight: 0.75, urgency: 1.20 },
+            },
+            // Fixed Add-Ons
+            addOns: {
+                fragile: 0.50,
+                weekend: 2.00,
+            }
+        }
+    };
+
+    /**
+     * Calculates the total delivery cost based on user inputs.
+     */
+    function calculateCost() {
+        const country = document.getElementById('country').value;
+        const category = document.getElementById('serviceCategory').value;
+        const distance = parseFloat(document.getElementById('distance').value);
+        const weight = parseFloat(document.getElementById('weight').value);
+        const sameDay = document.getElementById('sameDay').checked;
+        const returnTrip = document.getElementById('returnTrip').checked;
+        const fragileHandling = document.getElementById('fragileHandling').checked;
+        const weekendDelivery = document.getElementById('weekendDelivery').checked;
+
+        const totalCostElement = document.getElementById('totalCost');
+        const currencyDisplayElement = document.getElementById('currencyDisplay');
+        const errorElement = document.getElementById('error-message');
+
+        // --- Input Validation ---
+        if (isNaN(distance) || isNaN(weight) || distance < 0 || weight < 0) {
+            totalCostElement.textContent = 'Error';
+            currencyDisplayElement.textContent = 'Invalid Input';
+            errorElement.classList.remove('hidden');
+            return;
+        }
+        errorElement.classList.add('hidden');
+
+        // --- Get Rates and Currency Info ---
+        const priceData = PRICING[country];
+        const rates = priceData.rates[category];
+        const symbol = priceData.currencySymbol;
+
+        let total = 0;
+
+        // 1. Base Rate (Always applied)
+        let baseRate = rates.base;
+        total += baseRate;
+
+        // 2. Per KM Charge (if distance exceeds 5km)
+        const distanceThreshold = 5;
+        if (distance > distanceThreshold) {
+            const extraDistance = distance - distanceThreshold;
+            const distanceCharge = extraDistance * rates.km;
+            total += distanceCharge;
+        }
+
+        // 3. Weight Surcharge (if weight exceeds 20kg, as per prompt)
+        const weightThreshold = 20;
+        if (weight > weightThreshold) {
+            total += rates.weight;
+        }
+
+        // 4. Urgency Surcharge (Same-Day)
+        if (sameDay) {
+            total += rates.urgency;
+        }
+
+        // 5. Add-On Services (Checkboxes)
+
+        // 5a. Return Trip (40% of base rate)
+        if (returnTrip) {
+            total += baseRate * 0.40;
+        }
+
+        // 5b. Fragile/Special Handling
+        if (fragileHandling) {
+            total += priceData.addOns.fragile;
+        }
+
+        // 5c. Weekend/Holiday Delivery
+        if (weekendDelivery) {
+            total += priceData.addOns.weekend;
+        }
+        
+        // --- Display Result ---
+        // Format to two decimal places for USD, or round for KES (which is typically integer-based)
+        let formattedTotal;
+        if (country === 'USD') {
+            formattedTotal = total.toFixed(2);
+        } else {
+            formattedTotal = Math.round(total).toLocaleString('en-US'); // Use toLocaleString for KES thousands separator
+        }
+
+        totalCostElement.textContent = `${symbol} ${formattedTotal}`;
+        currencyDisplayElement.textContent = `All prices in ${symbol}`;
+    }
+
+    // Initialize calculation on load
+    window.onload = calculateCost;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" /> -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"/>
+<link rel="stylesheet" href="materialize/css/style.css">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Group Order</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    img.responsive-img {
+      max-width: 200px;
+      height: auto;
+    }
+    .brand-logo img{
+      padding-top: 10px;
+    }
+   
+    /* Responsive inputs: full width up to a max width */
+    input{
+      border-radius: 10px !important;
+      padding: 5px 15px !important;
+      margin: 15px 0 0 0 !important;
+      height: 50px;
+      width: 100% !important;
+      max-width: 480px;
+      box-sizing: border-box;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+    }
+
+    .password-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .password-wrapper input {
+      /* padding-right: 90px !important; */
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 8px;
+      top: 60%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #FF8702;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px 8px;
+      font-size: 0.95rem;
+    }
+    p{
+      padding: 0px !important;
+      margin: 0px 0px 0px 0px !important;
+    }
+    .datepicker-date-display {
+      background-color: #FF8702 !important;
+    }
+    button:focus {
+      background-color: #FF8702 !important;
+
+    }
+    .timepicker-digital-display {
+      background-color: #FF8702 !important;
+    }
+
+    .submit-space{
+      
+      width: 100% !important;
+/* position: fixed;
+bottom: 0; */
+/* height: 70px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+display: flex;
+justify-content: center;
+margin-bottom: 20px;
+
+    }
+
+    .submit-space button{
+      background-color: #FF8702 !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 5px !important;
+      height: 50px !important;
+      width: 55% !important;
+      /* margin-top: 10px !imp  ortant; */
+      font-size: 18px !important;
+      font-weight: 600 !important;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+      cursor: pointer;
+    }
+
+     @media (max-width: 480px) {
+      .m-0  { margin: 0 !important; }
+.mt-1 { margin-top: 0rem !important; }
+.mb-1 { margin-bottom: 0rem !important; }
+.ml-4 { margin-left:0rem !important; }
+.mr-4 { margin-right:0rem !important; }
+input{
+      
+      width: 90% !important;
+    }
+     .submit-space button{
+      width: 97% !important;}
+     }
+     a{
+        color: #FF8702 !important;
+        font-weight: 600 !important;
+     }
+
+       .modal {
+      width: 90% !important;
+      max-height: 90vh !important;
+      overflow-y: auto !important;
+      top: 30% !important;
+      border-radius: 20px !important;
+    }
+    @media (min-width: 600px) {
+      .modal {
+        width: 50% !important;
+      }
+    }
+    .modal-content {
+      padding: 20px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="white lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo center s12 m6 14"><img
+          src="/images/footer_logo.png" alt="" class="responsive-img"></a>
+      <ul class="left hide-on-med-and-down">
+        <li><a href="#" class="black-text"><i class="material-icons left">arrow_left</i>Back</a></li>
+      </ul>
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#" class="black-text">Back</a></li>
+      </ul> <a href="#" data-target="nav-mobile" class="sidenav-trigger black-text"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h6 class="center blue-text force-bold large">Step 2/3</h6>
+      <h4 class="header center black-text force-bold">Sign in to your account</h4>
+      <p class="center">Only registered users can create group orders</p>
+      <div class="container">
+          <div class="row" style="margin-bottom: 0 !important;">
+              <div class="col s12">
+                  <div class="row">
+                      <div class=" col s12 center">
+                          <!-- <label for="">Group Order Name*</label> -->
+                          <input type="email" name="" value="" placeholder="Email*" >
+                        </div>
+                        <div class=" col s12 center">
+                          <div class="password-wrapper">
+                            <input id="password" type="password" name="" value="" placeholder="Password*" aria-describedby="pw-toggle" />
+                            <a id="pw-toggle" class="toggle-password" type="button" aria-pressed="false" aria-label="Show password">Show</a>
+                          </div>
+                        </div>
+                        <div class=" col s12 ">
+                            <!-- <label for="">Group Order Name*</label> -->
+                            <!-- <input type="password" name="" value="" placeholder="Password*" > -->
+                            <p class="center" style=" padding-top: 1rem !important;"><a href="#modal1" class="modal-trigger">Forget Password?</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submit-space ">
+                <button type="submit" href="">Sign in</button>
+            </div>
+            <p class="center">Don't have an Account? <a href="signup.html">Sign up</a></p>
+        </div>
+    </div>
+    
+</div>
+
+   <!-- Modal Trigger -->
+  <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4 class="center">Modal Header</h4>
+         <div class="row">
+                      <div class=" col s12 center">
+                          <!-- <label for="">Group Order Name*</label> -->
+                          <input type="email" name="" value="" placeholder="Email*" >
+                        </div>
+                        <div class=" col s12">
+                             <div class="submit-space" style="margin-top: 20px;width: 100%;">
+                <button type="submit" href="">Reset</button>
+            </div>
+                        </div>
+                    </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+          
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems);
+      });
+  
+  (function() {
+    var pwInput = document.getElementById('password');
+    var pwToggle = document.getElementById('pw-toggle');
+    if (!pwInput || !pwToggle) return;
+
+    pwToggle.addEventListener('click', function () {
+      var hidden = pwInput.type === 'password';
+      pwInput.type = hidden ? 'text' : 'password';
+      pwToggle.textContent = hidden ? 'Hide' : 'Show';
+      pwToggle.setAttribute('aria-pressed', String(hidden));
+      pwToggle.setAttribute('aria-label', hidden ? 'Hide password' : 'Show password');
+    });
+  })();
+  </script>
+
+</html>
