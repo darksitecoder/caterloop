@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HungerHub - Order Management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #2c3e50;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 260px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .logo-text {
+            color: #2c3e50;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #e91e63, #ff1744);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .menu-item {
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            background-color: #f0f4ff;
+        }
+
+        .menu-item.active {
+            background-color: #6366f1;
+            color: white;
+        }
+
+        .menu-item i {
+            margin-right: 12px;
+            width: 20px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-left: auto;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        .cta-button i {
+            margin-right: 8px;
+        }
+
+        .promo-card {
+            background: linear-gradient(135deg, #f8f9ff, #f0f4ff);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #e0e7ff;
+        }
+
+        .promo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #e91e63, #ff1744);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .promo-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .promo-text {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .promo-link {
+            color: #e91e63;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .promo-link i {
+            margin-left: 4px;
+        }
+
+        .logout {
+            margin-top: auto;
+            padding: 12px 16px;
+            color: #64748b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .logout:hover {
+            background-color: #fee;
+            color: #e91e63;
+        }
+
+        .logout i {
+            margin-right: 12px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 20px 40px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 10px 40px 10px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            width: 300px;
+            font-size: 14px;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Orders Table */
+        .orders-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1.5fr 2fr 1fr 1fr;
+            padding: 16px 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #94a3b8;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            color: #cbd5e1;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #475569;
+        }
+
+        /* FAQ Page */
+        .faq-container {
+            max-width: 1000px;
+        }
+
+        .faq-sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .faq-menu {
+            list-style: none;
+        }
+
+        .faq-menu li {
+            padding: 14px 20px;
+            margin: 6px 0;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            color: #6366f1;
+            font-weight: 500;
+        }
+
+        .faq-menu li:hover {
+            background-color: #f0f4ff;
+        }
+
+        .faq-menu li.active {
+            background-color: #6366f1;
+            color: white;
+        }
+
+        .faq-questions {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            color: #1e293b;
+        }
+
+        .faq-question i {
+            color: #94a3b8;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .faq-answer.active {
+            max-height: 200px;
+            margin-top: 12px;
+        }
+
+        /* Group Orders Page */
+        .group-orders-hero {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 60px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .group-orders-hero h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .group-orders-hero p {
+            font-size: 18px;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .start-button {
+            background: white;
+            color: #6366f1;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .start-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .how-it-works {
+            margin-top: 50px;
+        }
+
+        .how-it-works h2 {
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: #1e293b;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f0f4ff, #e0e7ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 20px;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #1e293b;
+        }
+
+        .step-description {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .mobile-menu-toggle i {
+            font-size: 20px;
+            color: #1e293b;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .overlay.active {
+                display: block;
+            }
+
+            .search-box input {
+                width: 200px;
+            }
+
+            .table-header {
+                display: none;
+            }
+
+            .header {
+                margin-top: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 24px;
+            }
+
+            .search-box input {
+                width: 150px;
+            }
+
+            .header-right {
+                gap: 10px;
+            }
+
+            .group-orders-hero {
+                padding: 40px 20px;
+            }
+
+            .group-orders-hero h1 {
+                font-size: 28px;
+            }
+
+            .group-orders-hero p {
+                font-size: 16px;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 15px;
+            }
+
+            .orders-container,
+            .faq-sidebar,
+            .faq-questions {
+                padding: 20px;
+            }
+
+            .search-box {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Overlay for mobile -->
+        <div class="overlay" onclick="toggleMobileMenu()"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo">
+                <span class="logo-text">hunger</span>
+                <div class="logo-circle">hub</div>
+            </div>
+
+            <nav>
+                <div class="menu-item active" data-page="orders">
+                    <i class="fas fa-receipt"></i>
+                    <span>Orders</span>
+                </div>
+                <div class="menu-item" data-page="group-order">
+                    <i class="fas fa-users"></i>
+                    <span>Group Order</span>
+                    <span class="badge">New</span>
+                </div>
+                <div class="menu-item" data-page="faq">
+                    <i class="fas fa-question-circle"></i>
+                    <span>FAQ</span>
+                </div>
+            </nav>
+
+            <button class="cta-button">
+                <i class="fas fa-plus"></i>
+                Place new order
+            </button>
+
+            <div class="promo-card">
+                <div class="promo-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="promo-title">Ordering Often?</div>
+                <div class="promo-text">
+                    Learn more about Uncatering™ - a meal program that connects your employees with the best restaurants for daily or weekly meals
+                </div>
+                <a href="#" class="promo-link">
+                    Learn more <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Log out</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <h1 class="page-title" id="pageTitle">Your Orders</h1>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="user-avatar">S</div>
+                </div>
+            </div>
+
+            <!-- Orders Page Content -->
+            <div id="ordersPage" class="page-content">
+                <div class="orders-container">
+                    <div class="table-header">
+                        <div>Type</div>
+                        <div>Delivery Date</div>
+                        <div>Delivery Time</div>
+                        <div>Restaurant</div>
+                        <div>Total</div>
+                        <div>Status</div>
+                    </div>
+                    <div class="empty-state">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h3>No orders yet</h3>
+                        <p>Your order history will appear here</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Page Content -->
+            <div id="faqPage" class="page-content" style="display: none;">
+                <div class="faq-container">
+                    <div class="faq-sidebar">
+                        <ul class="faq-menu">
+                            <li class="active" data-faq="catering">On-Demand Catering Vs. Group Order</li>
+                            <li data-faq="contracts">Contracts and Agreements</li>
+                            <li data-faq="placing">Placing & managing orders</li>
+                            <li data-faq="group">Group Orders</li>
+                            <li data-faq="deliveries">Deliveries</li>
+                            <li data-faq="quality">Issues with food quality or accuracy</li>
+                            <li data-faq="uncatering">Uncatering</li>
+                        </ul>
+                    </div>
+
+                    <div class="faq-questions" id="faqQuestions">
+                        <!-- FAQ content will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Order Page Content -->
+            <div id="groupOrderPage" class="page-content" style="display: none;">
+                <div class="group-orders-hero">
+                    <h1>Group orders</h1>
+                    <p>Perfect for meetings and events... Group Orders combine the peace of mind of a catered meal with the flexibility allowing invitees to select their meals</p>
+                    <button class="start-button">Start Ordering</button>
+                </div>
+
+                <div class="how-it-works">
+                    <h2>How does it work?</h2>
+                    <p style="color: #64748b; margin-bottom: 30px;">You will have full visibility of all orders within a group order and can edit it along the way</p>
+
+                    <div class="steps-container">
+                        <div class="step-card">
+                            <div class="step-icon">🍱</div>
+                            <div class="step-title">Step 1</div>
+                            <div class="step-description">
+                                The restaurant of your choice - set a date, time, and per person budget
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-icon">🔗</div>
+                            <div class="step-title">Step 2</div>
+                            <div class="step-description">
+                                Share a unique link with your invitees that allows them to select and customize their items
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-icon">👥</div>
+                            <div class="step-title">Step 3</div>
+                            <div class="step-description">
+                                Share a unique link with your invitees that allows them to select and customize their items
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // FAQ Data for each category
+        const faqData = {
+            'catering': [
+                {
+                    question: "What's the difference between Group orders and On-Demand Catering?",
+                    answer: "Group orders allow team members to individually select and customize their meals from a restaurant, while On-Demand Catering provides pre-selected meal packages for groups. Group orders offer more flexibility and individual choice."
+                },
+                {
+                    question: "Which option is better for my event?",
+                    answer: "Group orders are ideal for meetings where attendees have diverse preferences and dietary restrictions. On-Demand Catering works best for large events where you want consistent, curated menu options."
+                },
+                {
+                    question: "Can I switch between catering types?",
+                    answer: "Yes, you can choose different catering types for different orders. Each order is independent and can be customized based on your specific needs."
+                },
+                {
+                    question: "What are the minimum order requirements?",
+                    answer: "Group orders typically require a minimum of 5 people, while On-Demand Catering usually starts at 10 people. Requirements may vary by restaurant."
+                }
+            ],
+            'contracts': [
+                {
+                    question: "Do I need to sign a contract?",
+                    answer: "No long-term contracts are required for individual orders. However, corporate accounts and recurring catering programs may have service agreements."
+                },
+                {
+                    question: "What are the payment terms?",
+                    answer: "Payment is processed at the time of order confirmation. Corporate accounts can set up invoicing with net-30 terms."
+                },
+                {
+                    question: "What is your cancellation policy?",
+                    answer: "Orders can be cancelled up to 24 hours before delivery for a full refund. Cancellations within 24 hours may incur a fee."
+                },
+                {
+                    question: "Are there any setup fees?",
+                    answer: "There are no setup fees or hidden charges. You only pay for the food and delivery as shown in your order summary."
+                }
+            ],
+            'placing': [
+                {
+                    question: "How far in advance should I place an order?",
+                    answer: "We recommend placing orders at least 24-48 hours in advance. Same-day orders may be available for select restaurants."
+                },
+                {
+                    question: "Can I modify my order after placing it?",
+                    answer: "Yes, orders can be modified up to 24 hours before the scheduled delivery time. Contact support or edit through your order dashboard."
+                },
+                {
+                    question: "How do I track my order?",
+                    answer: "You'll receive real-time updates via email and SMS. You can also track your order status in the Orders section of your dashboard."
+                },
+                {
+                    question: "What if I need to change the delivery address?",
+                    answer: "Delivery addresses can be updated up to 4 hours before delivery time. After that, changes may not be possible depending on the restaurant."
+                }
+            ],
+            'group': [
+                {
+                    question: "How do I create a group order?",
+                    answer: "Click 'Group Order' in the sidebar, select your restaurant, set your budget and delivery details, then share the unique link with your team members."
+                },
+                {
+                    question: "Who chooses the restaurant?",
+                    answer: "The person organizing the group order (the admin) selects the restaurant, sets the budget, delivery time, and deadline for ordering."
+                },
+                {
+                    question: "Can participants see what others ordered?",
+                    answer: "No, individual orders are private. Only the group admin can see all orders to manage the overall group order."
+                },
+                {
+                    question: "What happens if someone doesn't order in time?",
+                    answer: "The group admin can set a deadline. After the deadline, late participants won't be able to order, but the admin can manually add items if needed."
+                }
+            ],
+            'deliveries': [
+                {
+                    question: "What are your delivery hours?",
+                    answer: "Delivery hours vary by restaurant, but most deliveries are available between 11:00 AM and 8:00 PM. Check specific restaurant hours during ordering."
+                },
+                {
+                    question: "Do you deliver on weekends?",
+                    answer: "Yes, weekend deliveries are available from participating restaurants. Availability may be limited compared to weekdays."
+                },
+                {
+                    question: "Is there a delivery fee?",
+                    answer: "Delivery fees vary based on distance and order size. The exact fee will be shown before you confirm your order."
+                },
+                {
+                    question: "What if no one is there to receive the delivery?",
+                    answer: "Please provide delivery instructions or designate a contact person. For contactless delivery, we can leave orders at specified locations."
+                }
+            ],
+            'quality': [
+                {
+                    question: "What if my order is incorrect?",
+                    answer: "Contact our support team immediately with your order details and photos if possible. We'll work with the restaurant to resolve the issue promptly."
+                },
+                {
+                    question: "What if the food quality is not satisfactory?",
+                    answer: "We take food quality seriously. Report any issues within 2 hours of delivery, and we'll investigate and offer appropriate compensation or reordering."
+                },
+                {
+                    question: "How do I report missing items?",
+                    answer: "Check your order confirmation and contact support right away with details of missing items. We'll coordinate with the restaurant for replacements."
+                },
+                {
+                    question: "Can I get a refund for quality issues?",
+                    answer: "Yes, refunds or credits are available for valid quality complaints. We review each case individually to ensure fair resolution."
+                }
+            ],
+            'uncatering': [
+                {
+                    question: "What is Uncatering™?",
+                    answer: "Uncatering™ is our meal program that connects your employees with the best restaurants for daily or weekly meals, providing variety and flexibility."
+                },
+                {
+                    question: "How does Uncatering differ from regular catering?",
+                    answer: "Unlike traditional catering with fixed menus, Uncatering gives employees the freedom to choose from multiple restaurants and customize their meals daily."
+                },
+                {
+                    question: "What are the benefits for companies?",
+                    answer: "Uncatering offers flexible meal programs, no long-term contracts, budget control, and increased employee satisfaction through variety and choice."
+                },
+                {
+                    question: "How do I set up an Uncatering program?",
+                    answer: "Contact our team to discuss your company's needs. We'll help you set up a customized program with budget guidelines and preferred restaurants."
+                }
+            ]
+        };
+
+        // Page Navigation
+        const menuItems = document.querySelectorAll('.menu-item');
+        const pages = {
+            'orders': document.getElementById('ordersPage'),
+            'faq': document.getElementById('faqPage'),
+            'group-order': document.getElementById('groupOrderPage')
+        };
+
+        const pageTitles = {
+            'orders': 'Your Orders',
+            'faq': 'FAQ',
+            'group-order': 'Group Orders'
+        };
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const page = item.getAttribute('data-page');
+                
+                // Update active menu item
+                menuItems.forEach(mi => mi.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Hide all pages
+                Object.values(pages).forEach(p => p.style.display = 'none');
+                
+                // Show selected page
+                pages[page].style.display = 'block';
+                
+                // Update page title
+                document.getElementById('pageTitle').textContent = pageTitles[page];
+
+                // Load default FAQ category when FAQ page is opened
+                if (page === 'faq') {
+                    loadFAQCategory('catering');
+                }
+
+                // Close mobile menu if open
+                if (window.innerWidth <= 1024) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // FAQ Category Navigation
+        const faqMenuItems = document.querySelectorAll('.faq-menu li');
+        
+        faqMenuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const category = item.getAttribute('data-faq');
+                
+                // Update active state
+                faqMenuItems.forEach(mi => mi.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Load FAQ content for selected category
+                loadFAQCategory(category);
+            });
+        });
+
+        // Load FAQ Category Content
+        function loadFAQCategory(category) {
+            const container = document.getElementById('faqQuestions');
+            const faqs = faqData[category];
+            
+            container.innerHTML = '';
+            
+            faqs.forEach(faq => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'faq-item';
+                faqItem.innerHTML = `
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>${faq.question}</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        ${faq.answer}
+                    </div>
+                `;
+                container.appendChild(faqItem);
+            });
+        }
+
+        // Initialize FAQ with first category
+        loadFAQCategory('catering');
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const isActive = element.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+                q.nextElementSibling.classList.remove('active');
+            });
+            
+            // Toggle clicked FAQ
+            if (!isActive) {
+                element.classList.add('active');
+                answer.classList.add('active');
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.overlay');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                sidebar.classList.contains('active') && 
+                !sidebar.contains(e.target) && 
+                !toggle.contains(e.target)) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) {
+                document.getElementById('sidebar').classList.remove('active');
+                document.querySelector('.overlay').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
