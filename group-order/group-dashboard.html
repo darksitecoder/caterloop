@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HungerHub - Order Management</title>
+    <title>Caterloop - Group Order Management</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -38,29 +38,17 @@
 
         .logo {
             display: flex;
+            justify-content: center;
             align-items: center;
             margin-bottom: 40px;
             font-size: 24px;
             font-weight: 600;
         }
 
-        .logo-text {
-            color: #2c3e50;
+        .logo img {
+            max-width:170px;
+            height: auto;
         }
-
-        .logo-circle {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #e91e63, #ff1744);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            margin-left: 5px;
-        }
-
         .menu-item {
             padding: 12px 16px;
             margin: 8px 0;
@@ -77,7 +65,7 @@
         }
 
         .menu-item.active {
-            background-color: #6366f1;
+            background-color: #FF8702;
             color: white;
         }
 
@@ -87,7 +75,7 @@
         }
 
         .badge {
-            background: linear-gradient(135deg, #7c3aed, #a855f7);
+           background: linear-gradient(135deg, #FF8702, #8b5cf6);
             color: white;
             padding: 2px 8px;
             border-radius: 12px;
@@ -99,7 +87,7 @@
         .cta-button {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background:#FF8702;
             color: white;
             border: none;
             border-radius: 8px;
@@ -133,7 +121,7 @@
         .promo-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #e91e63, #ff1744);
+            background: #FF8702;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -156,7 +144,7 @@
         }
 
         .promo-link {
-            color: #e91e63;
+            color: #FF8702;
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
@@ -181,7 +169,7 @@
 
         .logout:hover {
             background-color: #fee;
-            color: #e91e63;
+            color: #FF8702;
         }
 
         .logout i {
@@ -239,7 +227,7 @@
         .user-avatar {
             width: 45px;
             height: 45px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #FF8702, #8b5cf6);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -290,12 +278,15 @@
 
         /* FAQ Page */
         .faq-container {
-            max-width: 1000px;
+            max-width: 100%;
+            display: flex;
+            justify-content: space-between;
         }
 
         .faq-sidebar {
             background: white;
             border-radius: 12px;
+            width: 45%;
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
@@ -311,7 +302,7 @@
             cursor: pointer;
             border-radius: 8px;
             transition: all 0.3s;
-            color: #6366f1;
+            color: #FF8702;
             font-weight: 500;
         }
 
@@ -320,7 +311,7 @@
         }
 
         .faq-menu li.active {
-            background-color: #6366f1;
+            background-color: #FF8702;
             color: white;
         }
 
@@ -328,6 +319,7 @@
             background: white;
             border-radius: 12px;
             padding: 30px;
+            width: 50%;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
@@ -374,7 +366,7 @@
 
         /* Group Orders Page */
         .group-orders-hero {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #FF8702, #8b5cf6);
             color: white;
             padding: 60px;
             border-radius: 12px;
@@ -395,7 +387,7 @@
 
         .start-button {
             background: white;
-            color: #6366f1;
+            color: #FF8702;
             padding: 16px 40px;
             border: none;
             border-radius: 8px;
@@ -560,6 +552,21 @@
             .steps-container {
                 grid-template-columns: 1fr;
             }
+ .faq-container {
+            max-width: 100%;
+            display: block;
+        }
+
+        .faq-sidebar {
+            
+            width: 100%;
+        }
+              .faq-questions {
+            width: 100%;
+        }
+           .logo {
+            justify-content: end;
+           }
         }
 
         @media (max-width: 480px) {
@@ -576,6 +583,24 @@
             .search-box {
                 display: none;
             }
+             .faq-container {
+            max-width: 100%;
+            display: block;
+        }
+
+        .faq-sidebar {
+            
+            width: 100%;
+        }
+              .faq-questions {
+            width: 100%;
+        }
+           
+        .logo {
+            justify-content: end;
+
+        }
+
         }
     </style>
 </head>
@@ -592,8 +617,7 @@
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="logo">
-                <span class="logo-text">hunger</span>
-                <div class="logo-circle">hub</div>
+                <img src="/images/footer_logo.png" alt="">
             </div>
 
             <nav>
