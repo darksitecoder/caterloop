@@ -22,11 +22,12 @@
 	<link rel="stylesheet" href="assets/css/themify-icons.css">
 	<link rel="stylesheet" href="assets/css/nice-select.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="assets/css/sumit.css">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<!-- <link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet"> -->
 
 	<link rel="stylesheet" href="fonts/icomoon/style.css">
 	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
@@ -35,7 +36,6 @@
 	<link rel="stylesheet" href="css/aos.css">
 	<link rel="stylesheet" href="css/flatpickr.min.css">
 	<link rel="stylesheet" href="css/glightbox.min.css">
-	<link rel="stylesheet" href="css/style.css">
     <style>
       
 
@@ -114,7 +114,7 @@
             top: 100%;
             left: 0;
             background: white;
-            min-width: 300px;
+            min-width: 250px;
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             opacity: 0;
@@ -275,6 +275,45 @@
             }
         }
 
+        
+        .get-started::after{
+            content: '' !important;
+        }
+        .login::after{
+            content: '' !important;
+        }
+        .login{
+            border: 1px solid #FF8702;
+        }
+        .user{
+            border: 1px solid #FF8702;
+            /* max-width: 150px; */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+             margin: 1rem 0;
+        }
+        .get-started{
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            border: 1px solid #FF8702;
+            background-color: #FF8702;
+            color: white ;
+        }
+        .get-started:hover{
+            color:#FF8702 !important;
+           background: rgba(234, 179, 102, 0.1) !important;
+        }
+
+
+
         /* Overlay for mobile menu */
         .overlay {
             display: none;
@@ -304,165 +343,11 @@
   
   }
 }
-.logos {
-  overflow: hidden;
-  padding: 60px 0;
-  background: #000;
-  white-space: nowrap;
-  position: relative;
-}
 
-.logos:before,
-.logos:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 250px;
-  height: 100%;
-  z-index: 2;
-}
-
-.logos:before {
-  left: 0;
-  background: linear-gradient(to left, rgba(255,255,255,0), rgb(69, 69, 69));
-}
-
-.logos:after {
-  right: 0;
-  background: linear-gradient(to right, rgba(255,255,255,0), rgb(69, 69, 69));
-}
-
-.logos-slide {
-  display: inline-block;
-  white-space: nowrap;
-  animation: scroll 200s linear infinite;
-}
-
-.logos-slide img {
-  height: 50px;
-  margin: 0 40px;
-  vertical-align: middle;
-}
-
-.logos:hover .logos-slide {
-  animation-play-state: paused;
-}
-
-/* Keyframes for smooth infinite scroll */
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.faq-item {
-    background: white;
-    border-radius: 14px;
-    margin-bottom: 16px;
-    border: 1px solid #E5E7EB;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.faq-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.faq-question {
-    padding: 24px 28px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    cursor: pointer;
-    font-weight: 600;
-    color: #1F2937;
-}
-
-.faq-icon {
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    color: #5B5FE3;
-    transition: transform 0.3s ease;
-}
-
-.faq-item.active .faq-icon {
-    transform: rotate(45deg);
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.4s ease;
-    padding: 0 28px;
-}
-
-.faq-item.active .faq-answer {
-    max-height: 500px;
-    padding: 0 28px 24px 68px;
-}
-
-
-.popular img{
-width:100%;
-position: relative;
-transition: 0.5s ease-in-out;
-height: 100%;
-}
-.popular img:hover{
-    transform: scale(1.05) rotate(3deg);
-}
-.popular .images{
-    width: 100%;
-    height: 250px;
-  border-radius: 12px;
-    margin-bottom: 24px;
-    position: relative;
-    overflow: hidden;
-    display: block;
-
-}
-.popular .images p{
-    position: absolute;
-    text-transform: capitalize;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    bottom: -20px;
-    left: 0px;
-    width: 100%;
-    padding: 12px;
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 30px;
-    color: var(--white);
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-    background: linear-gradient(92.22deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
-
-}
-@media (max-width: 575px) {
-    .services-cap .border-btn {
-        display: block;
-    }
-    .about-caption .border-btn{
-        display: block;
-        width: 70%;
-        text-align: center;
-    }
-}
-.gj-picker{
-    position: absolute;
-    /* left: 32.5px !important; */
-    top: 50%;
-
-}
     </style>
 </head>
 <body>
-     <nav class="navbar">
+    <nav class="navbar">
         <div class="nav-container">
             <div class="logo"><a href="/"><img src=" images/footer_logo.png" alt=""></a></div>
             
@@ -491,13 +376,21 @@ height: 100%;
                         <a href="#" class="dropdown-item">Blog</a>
                     </div>
                 </li>
+               
                 
                 <li class="nav-item" id="login">
-                    <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/login" class="nav-link">Login</a>
+                    <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/login" class="nav-link user">Hi, Jitesh Sharma</a>
                     <div class="dropdown">
                         <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/login" class="dropdown-item">Profile</a>
                         <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/login" class="dropdown-item">Logout</a>
                     </div>
+                </li>
+
+                 <li class="nav-item" id="about">
+                    <a href="#" class="nav-link login">Login</a>
+                </li>
+                <li class="nav-item" id="about">
+                    <a href="#" class="get-started">Get Started</a>
                 </li>
             </ul>
             
@@ -604,7 +497,7 @@ height: 100%;
         </div>
 
         <!--? About-2 Area Start -->
-        <div class="about-area2 py-5">
+        <div class="about-area2 ">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12">
@@ -634,7 +527,7 @@ height: 100%;
         <!-- About-2 Area End -->
      
 
-        <section class="popular py-5">
+        <section class="popular ">
             <div class="container">
                 <div class="section-tittle text-center mb-70">
                                 <h2>Popular Cuisines</h2>
@@ -756,8 +649,8 @@ height: 100%;
             </div>
         </div>
         <!-- Booking Room End-->
-      <div class="py-5">
-  <!-- <h3 class="text-center py-5">Our Clients</h3> -->
+      <div class="">
+  <!-- <h3 class="text-center ">Our Clients</h3> -->
   <div class="logos">
     <div class="logos-slide">
       <img src="images/logo/Alfies_Sandwiches.avif" />
@@ -795,8 +688,8 @@ height: 100%;
        
 
           <!-- FAQ Section -->
-    <section class=" container">
-        <div class="max-w-7xl mx-auto px-6 py-5">
+    <section class="container py-5">
+        <div class="max-w-7xl mx-auto px-6 ">
             <div class="text-center mb-16">
                 <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 ">
                     <i class="fas fa-question text-white text-2xl"></i>
@@ -848,7 +741,7 @@ height: 100%;
         </div>
     </section>
 
-<section class="py-5">
+<section class="">
     
 <div class="section_caterloop" style=" background-image: url(assets/img/hero/banner.png); background-position: center; background-repeat: no-repeat; background-size: contain;">
     <div class="container">
@@ -998,6 +891,21 @@ function toggleFaq(element) {
     faqItem.classList.toggle('active');
 }
 
+    </script>
+
+      <script>
+        // Limit words in elements with class "user"
+        document.addEventListener('DOMContentLoaded', function() {
+            var userElements = document.querySelectorAll('.user');
+            userElements.forEach(function(el) {
+                var text = el.textContent.trim();
+                var words = text.split(' ');
+                // Keep only the first two words and add ellipsis
+                if (words.length > 2) {
+                    el.textContent = words[0] + ' ' + words[1] + '...';
+                }
+            });
+        });
     </script>
 
      <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
