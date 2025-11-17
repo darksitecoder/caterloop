@@ -2,19 +2,17 @@
 <html>
 
 <head>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" /> -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 
   <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"/>
 <link rel="stylesheet" href="materialize/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <title>Group Order</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Compiled and minified CSS -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
-  <!-- Compiled and minified JavaScript -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     img.responsive-img {
       max-width: 200px;
@@ -23,23 +21,42 @@
     .brand-logo img{
       padding-top: 10px;
     }
-    .force-bold {
-      font-weight: 700 !important;
-    }
-    label {
-      font-size: 25px !important;
-      color: #000 !important;
-      font-weight: 700;
-      text-align: left !important;
-    }
+   
+    /* Responsive inputs: full width up to a max width */
     input{
-      /* border: none !important; */
       border-radius: 10px !important;
       padding: 5px 15px !important;
-      margin: 15px 0px 0px 0px!important;
+      margin: 15px 0 0 0 !important;
       height: 50px;
-      width: 50% !important;
+      width: 100% !important;
+      max-width: 480px;
+      box-sizing: border-box;
       box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px !important;
+    }
+
+    .password-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .password-wrapper input {
+      /* padding-right: 90px !important; */
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 8px;
+      top: 60%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #FF8702;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px 8px;
+      font-size: 0.95rem;
     }
     p{
       padding: 0px !important;
@@ -96,6 +113,34 @@ input{
      .submit-space button{
       width: 97% !important;}
      }
+     a{
+        color: #FF8702 !important;
+        font-weight: 600 !important;
+     }
+
+       .modal {
+      width: 90% !important;
+      max-height: 90vh !important;
+      overflow-y: auto !important;
+      top: 30% !important;
+      border-radius: 20px !important;
+    }
+    @media (min-width: 600px) {
+      .modal {
+        width: 50% !important;
+      }
+    }
+    .modal-content {
+      padding: 20px !important;
+    }
+
+    nav{
+      box-shadow: none !important;
+    }
+
+    .fa-angle-left{
+      font-size: 15px;
+    }
   </style>
 </head>
 
@@ -104,87 +149,89 @@ input{
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo center s12 m6 14"><img
           src="/images/footer_logo.png" alt="" class="responsive-img"></a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="#" class="black-text"><i class="material-icons left">arrow_left</i>Back</a></li>
+        <li><a href="#" class="black-text js-back" aria-label="Go back"><i class="fa-solid fa-angle-left"></i>Back</a></li>
       </ul>
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#" class="black-text">Back</a></li>
-      </ul> <a href="#" data-target="nav-mobile" class="sidenav-trigger black-text"><i class="material-icons">menu</i></a>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <h6 class="center blue-text force-bold large">Step 2/3</h6>
-      <h4 class="header center black-text force-bold">Sign in to your account</h4>
-      <p class="center">Only registered users can create group orders</p>
-   <div class="container">
-   <div class="row">
-    <div class="col s12">
-      <div class="row">
-        <div class=" col s12 center">
-          <!-- <label for="">Group Order Name*</label> -->
-          <input type="email" name="" value="" placeholder="Email*" >
+      <h6 class="center blue-text force-bold large"><b>Step 2/3</b></h6>
+      <h4 class="header center black-text force-bold"><b>Sign up for your account</b></h4>
+      <p class="center">Only registered users can create group orders. Creating an account allows you to manage current and past orders.</p>
+      <div class="container">
+          <div class="row" style="margin-bottom: 0 !important;">
+              <div class="col s12">
+                  <div class="row">
+                      <div class=" col s12 center">
+                          <!-- <label for="">Group Order Name*</label> -->
+                          <input type="text" name="" value="" placeholder="First Name*" required>
+                        </div>
+                      <div class=" col s12 center">
+                          <!-- <label for="">Group Order Name*</label> -->
+                          <input type="text" name="" value="" placeholder="Last Name*" required>
+                        </div>
+                      <div class=" col s12 center">
+                          <!-- <label for="">Group Order Name*</label> -->
+                          <input type="email" name="" value="" placeholder="Email*" required>
+                        </div>
+                        <div class=" col s12 center">
+                          <div class="password-wrapper">
+                            <input id="password" type="password" name="" value="" placeholder="Password*" aria-describedby="pw-toggle" required/>
+                            <a id="pw-toggle" class="toggle-password" type="button" aria-pressed="false" aria-label="Show password">Show</a>
+                          </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="submit-space ">
+                <button type="submit" href="">Continue</button>
+            </div>
+            <p class="center">Already have an account? <a href="signin.html">Sign in</a></p>
         </div>
-        <div class=" col s12 center">
-          <!-- <label for="">Group Order Name*</label> -->
-          <input type="password" name="" value="" placeholder="Password*" >
-        </div>
-      </div>
     </div>
-    </div>
-      <!-- <div class="row">
-        <label for="">Budget and attendees*</label>
-        <div class="input-field col s12 m6 14">
-          <input type="text" name="" value="" class="" placeholder="ex. Caterloop Group">
-        </div>
-        <div class="input-field col s12 m6 14">
-          <input type="text" name="" value="" class="" placeholder="ex. Caterloop Group">
-        </div>
-      </div>
-      <div class="row">
-        <label for="">Your order deadline to verify and submit order*</label>
-        <div class="input-field col s12 m6 14">
-          <p>Date</p>
-          <input type="text" class="datepicker" placeholder="Select a date">
-        </div>
-        <div class="input-field col s12 m6 14">
-          <p>Time</p>
-          <input type="text" class="timepicker" placeholder="Select a time">
-        </div>
-      </div>
-      <div class="row">
-        <div><label for="">Set order deadline for users*</label></div>
-        <div class="input-field col s12 m6 14">
-          <p>Date</p>
-          <input type="text" class="datepicker" placeholder="Select a date">
-        </div>
-        <div class="input-field col s12 m6 14">
-          <p>Time</p>
-          <input type="text" class="timepicker" placeholder="Select a time">
-        </div>
-      </div> -->
-       <div class="submit-space ">
-    <button type="submit" href="">Sign in</button>
-  </div>
-    </div>
-  </div>
-  
-  </div>
+    
+</div>
 
-  
-  
-  <script type="text/javascript" src="materialize/js/init.js"></script>
-  <script type="text/javascript" src="materialize/js/materialize.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ 
+          
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
 </body>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var dateElems = document.querySelectorAll('.datepicker');
-      M.Datepicker.init(dateElems, { autoClose: true, format: 'yyyy-mm-dd' });
-      
-      var timeElems = document.querySelectorAll('.timepicker');
-      M.Timepicker.init(timeElems, { twelveHour: false, autoClose: true });
+
+  (function() {
+    var pwInput = document.getElementById('password');
+    var pwToggle = document.getElementById('pw-toggle');
+    if (!pwInput || !pwToggle) return;
+
+    pwToggle.addEventListener('click', function () {
+      var hidden = pwInput.type === 'password';
+      pwInput.type = hidden ? 'text' : 'password';
+      pwToggle.textContent = hidden ? 'Hide' : 'Show';
+      pwToggle.setAttribute('aria-pressed', String(hidden));
+      pwToggle.setAttribute('aria-label', hidden ? 'Hide password' : 'Show password');
     });
+  })();
+
+  (function() {
+    var backLinks = document.querySelectorAll('.js-back');
+    if (!backLinks || !backLinks.length) return;
+    Array.prototype.forEach.call(backLinks, function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (document.referrer && document.referrer !== '') {
+          window.location.href = document.referrer;
+        } else if (history.length > 1) {
+          history.back();
+        } else {
+          window.location.href = 'index.html';
+        }
+      });
+    });
+  })();
   </script>
 
 </html>

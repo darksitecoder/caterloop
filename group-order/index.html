@@ -15,6 +15,8 @@
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
   <!-- Compiled and minified JavaScript -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+   
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <style>
     img.responsive-img {
       max-width: 200px;
@@ -59,10 +61,6 @@
     .submit-space{
       
       width: 100% !important;
-/* position: fixed;
-bottom: 0; */
-/* height: 70px;
-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
 display: flex;
 justify-content: center;
 margin-bottom: 20px;
@@ -90,19 +88,22 @@ margin-bottom: 20px;
 .ml-4 { margin-left:0rem !important; }
 .mr-4 { margin-right:0rem !important; }
      }
+ nav{
+      box-shadow: none !important;
+    }
+    .fa-angle-left{
+      font-size: 15px;
+    }
   </style>
 </head>
 
 <body>
-  <nav class="white lighten-1" role="navigation">
+   <nav class="white lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo center s12 m6 14"><img
           src="/images/footer_logo.png" alt="" class="responsive-img"></a>
       <ul class="left hide-on-med-and-down">
-        <li><a href="#" class="black-text"><i class="material-icons left">arrow_left</i>Back</a></li>
+        <li><a href="#" class="black-text js-back" aria-label="Go back"><i class="fa-solid fa-angle-left"></i>Back</a></li>
       </ul>
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#" class="black-text">Back</a></li>
-      </ul> <a href="#" data-target="nav-mobile" class="sidenav-trigger black-text"><i class="material-icons">menu</i></a>
     </div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
@@ -124,10 +125,10 @@ margin-bottom: 20px;
         <label for="">Budget and attendees*</label>
         <p>The number of expected attendees affects the ensuing deadline to orders</p>
         <div class="input-field col s12 m6 14">
-          <input type="text" name="" value="" class="" placeholder="ex. Caterloop Group">
+          <input type="text" name="" value="" class="" placeholder="$ Write budget per attendiece">
         </div>
         <div class="input-field col s12 m6 14">
-          <input type="text" name="" value="" class="" placeholder="ex. Caterloop Group">
+          <input type="text" name="" value="" class="" placeholder="Write attendieces number">
         </div>
       </div>
       <div class="row">
@@ -153,7 +154,7 @@ margin-bottom: 20px;
         </div>
       </div>
        <div class="submit-space ">
-    <button type="submit" href="">Next</button>
+    <button type="submit" href="signin.html">Next</button>
   </div>
     </div>
   </div>
@@ -175,6 +176,26 @@ margin-bottom: 20px;
       var timeElems = document.querySelectorAll('.timepicker');
       M.Timepicker.init(timeElems, { twelveHour: false, autoClose: true });
     });
+
+
+
+    
+  (function() {
+    var backLinks = document.querySelectorAll('.js-back');
+    if (!backLinks || !backLinks.length) return;
+    Array.prototype.forEach.call(backLinks, function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (document.referrer && document.referrer !== '') {
+          window.location.href = document.referrer;
+        } else if (history.length > 1) {
+          history.back();
+        } else {
+          window.location.href = 'index.html';
+        }
+      });
+    });
+  })();
   </script>
 
 </html>
