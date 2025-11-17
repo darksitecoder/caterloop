@@ -2665,7 +2665,8 @@ hr {
 
 .slider-height {
     /* background-image: url(../img/hero/h1_hero.png); */
-    min-height: 650px;
+    min-height: 550px;
+    padding-top: 5rem;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -2732,13 +2733,16 @@ hr {
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     .slider-area .hero__caption {
-        padding-top: 100px
+        /* padding-top: 100px */
     }
 }
 
 @media (max-width: 575px) {
     .slider-area .hero__caption {
-        padding-top: 100px
+        /* padding-top: 100px */
+    }
+    .slider-height {
+        padding-top: 2rem;
     }
 }
 
