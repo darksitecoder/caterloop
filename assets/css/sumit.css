@@ -209,7 +209,7 @@
 
 .section_caterloop {
     background-color: #f7f9ff;
-    padding: 8rem 0rem;
+    padding: 2rem 0rem;
     background-color: rgba(238, 234, 234, 0.473);
     background-blend-mode: lighten;
     /* display: block; */
@@ -1023,4 +1023,15 @@
     outline: none;
     width: 75%;
     /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+.select-itms input{
+    color: #9d9d9d;
+    background-color: #f9f9f9;
+    border: 0;
+    border-radius: 10px;
+    height: 65px;
+    width: 100%;
+    padding-left: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
