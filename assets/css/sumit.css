@@ -1,7 +1,7 @@
 .our-services .single-services {
     padding: 20px 23px;
     min-height: 350px;
-    max-height: 350px;
+    /* max-height: 350px; */
     -webkit-transition: all .4s ease-out 0s;
     -moz-transition: all .4s ease-out 0s;
     -ms-transition: all .4s ease-out 0s;
@@ -62,7 +62,7 @@
         padding: 0
     }
 }
-
+/* 
 .our-services .single-services .services-cap h5 a {
     font-weight: 600;
     font-size: 25px;
@@ -73,7 +73,7 @@
 }
 
 .our-services .single-services .services-cap p {
-    color: #828282;
+    color: #003f5b;
     font-size: 14px
 }
 
@@ -204,11 +204,10 @@
     top: 20px;
     color: #9d9d9d;
     font-size: 20px
-}
+} */
 
 
 .section_caterloop {
-    background-color: #f7f9ff;
     padding: 2rem 0rem;
     background-color: rgba(238, 234, 234, 0.473);
     background-blend-mode: lighten;
@@ -216,7 +215,7 @@
 }
 
 .section_caterloop .email_btn {
-    border: 1px solid #FF8702;
+    border: 1px solid #f3a9cc;
     border-radius: 50px;
     width: 90%;
     padding: 0.9rem 0rem;
@@ -231,6 +230,9 @@
     border: none;
     outline: none;
     width: 60%;
+}
+.section_caterloop h3 {
+    font-weight: 700;
 }
 
 @media (max-width: 767px) {
@@ -249,11 +251,11 @@
 
     .section_caterloop input {
         background: transparent;
-        border: 1px solid #FF8702;
+        border: 1px solid #f3a9cc;
         outline: none;
         width: 100%;
         margin: 0.5rem 0rem;
-        border: 1px solid #FF8702;
+        border: 1px solid #f3a9cc;
         border-radius: 50px;
         padding: 0.9rem;
         text-align: center;
@@ -269,7 +271,7 @@
 
 
 .border-btn {
-    border: 1px solid #FF8702;
+    border: 1px solid #f3a9cc;
     color: #464d65;
     background: none;
     border-radius: 35px;
@@ -279,7 +281,7 @@
     cursor: pointer;
     display: inline-block;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 1px;
     margin-bottom: 0;
     position: relative;
@@ -303,7 +305,7 @@
     top: 0;
     width: 101%;
     height: 101%;
-    background: #FF8702;
+    background: #f3a9cc;
     z-index: -1;
     transition: transform 0.5s;
     transition-timing-function: ease;
@@ -562,7 +564,7 @@
 .about-area3 form.search-box .search-form button {
     width: 100%;
     height: 60px;
-    background: #FF8702;
+    background: #f3a9cc;
     font-size: 20px;
     line-height: 1;
     text-align: center;
@@ -834,14 +836,14 @@
     gap: 16px;
     cursor: pointer;
     font-weight: 600;
-    color: #1F2937;
+    color: #003f5b;
 }
 
 .faq-icon {
     width: 24px;
     height: 24px;
     min-width: 24px;
-    color: #FF8702;
+    color: #f3a9cc;
     transition: transform 0.3s ease;
 }
 
@@ -928,21 +930,25 @@
 
 
 .site-footer {
-    background: #efefef;
+    background: #003f5b;
     font-size: 18px;
-    color: #100f0f;
+    color: #24aca6;
     padding: 70px 0;
+}
+.site-footer p{
+   
+    color: #fff;
 }
 
 .site-footer a {
-    color: #FF8702;
+    color: #24aca6;
     position: relative;
     font-size: 15px;
     display: inline-block;
     text-decoration: none;
 }
 .site-footer a:hover {
-    color: #FF8702 !important;
+    color: #24aca6 !important;
 
 }
 
@@ -960,7 +966,7 @@
 .site-footer .widget h3,
 .site-footer .widget .h3 {
     font-size: 16px;
-    color: #000;
+    color: #24aca6 !important;
     margin-bottom: 30px;
     font-weight: 700;
 }
@@ -974,7 +980,7 @@
 }
 
 .site-footer .widget .links li a {
-    color: #777;
+    color: #fff;
 }
 
 .site-footer .social li {
@@ -986,9 +992,9 @@
     width: 30px;
     height: 30px;
     position: relative;
-    background: #777;
+    background: #fff;
     border-radius: 50%;
-    color: #fff;
+    color: #003f5b;
 }
 
 .site-footer .social li a:before {
@@ -1005,8 +1011,8 @@
 }
 
 .site-footer .social li a:hover {
-    background: #000;
-    color: #fff;
+    background: #24aca6;
+    color: #003f5b !important;
 }
 
 
@@ -1093,8 +1099,8 @@
         }
 
         .nav-link:hover {
-            color: #FF8702;
-            background: rgba(234, 166, 102, 0.1);
+            color: #f3a9cc;
+            background: rgba(255, 64, 163, 0.062);
         }
 
         .nav-link::after {
@@ -1141,9 +1147,9 @@
 
         .dropdown-item:hover {
             background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
-            border-left-color: #FF8702;
+            border-left-color: #f3a9cc;
             padding-left: 2rem;
-            color: #FF8702;
+            color: #f3a9cc;
         }
 
         .hamburger {
@@ -1157,7 +1163,7 @@
         .hamburger span {
             width: 28px;
             height: 3px;
-            background: #FF8702;
+            background: #f3a9cc;
             border-radius: 3px;
             transition: all 0.3s ease;
         }
@@ -1275,24 +1281,24 @@
         }
 
         
-        .get-started::after{
+       .nav-menu .get-started::after{
             content: '' !important;
         }
-        .login::after{
+       .nav-menu .login::after{
             content: '' !important;
         }
-        .login{
-            border: 1px solid #FF8702;
+       .nav-menu .login{
+            border: 1px solid #f3a9cc;
         }
-        .user{
-            border: 1px solid #FF8702;
+       .nav-menu .user{
+            border: 1px solid #f3a9cc;
             /* max-width: 150px; */
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
              margin: 1rem 0;
         }
-        .get-started{
+       .nav-menu .get-started{
             text-decoration: none;
             font-weight: 500;
             padding: 0.5rem 1rem;
@@ -1302,13 +1308,13 @@
             gap: 0.3rem;
             transition: all 0.3s ease;
             border-radius: 8px;
-            border: 1px solid #FF8702;
-            background-color: #FF8702;
-            color: white ;
+            border: 1px solid #f3a9cc;
+            background-color: #f3a9cc;
+            color: #003f5b ;
         }
         .get-started:hover{
-            color:#FF8702 !important;
-           background: rgba(234, 179, 102, 0.1) !important;
+            color:#f3a9cc !important;
+           background: rgba(255, 64, 163, 0.062) !important;
         }
 
 
