@@ -119,6 +119,10 @@ h4 {
 }
 .read-btn{
     text-decoration: none;
-    color: #3a5bcc;
+    color: #FF8702;
     font-weight: 600;
+    transition: 0.5s ease-in-out;
+}
+.read-btn:hover{
+    color: #000;
 }
