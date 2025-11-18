@@ -208,7 +208,7 @@
 
 
 .section_caterloop {
-    padding: 2rem 0rem;
+    padding: 5rem 0rem;
     background-color: rgba(238, 234, 234, 0.473);
     background-blend-mode: lighten;
     /* display: block; */
@@ -238,7 +238,7 @@
 @media (max-width: 767px) {
     .section_caterloop {
         background-size: cover !important;
-
+background-color: rgb(238 234 234 / 83%);
 
     }
 
