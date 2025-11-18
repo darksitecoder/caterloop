@@ -272,7 +272,7 @@ background-color: rgb(238 234 234 / 83%);
 
 .border-btn {
     border: 1px solid #f3a9cc;
-    color: #464d65;
+    color: #003f5b !important;
     background: none;
     border-radius: 35px;
     text-transform: capitalize;
