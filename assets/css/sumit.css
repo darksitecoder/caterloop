@@ -313,7 +313,7 @@ background-color: rgb(238 234 234 / 83%);
     transform-origin: 0 0;
     transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
     transform: scaleY(0);
-    border-radius: 0
+    border-radius: 0;
 }
 
 .border-btn:hover::before {
