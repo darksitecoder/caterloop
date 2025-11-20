@@ -36,204 +36,297 @@
 	<link rel="stylesheet" href="css/aos.css">
 	<link rel="stylesheet" href="css/flatpickr.min.css">
 	<link rel="stylesheet" href="css/glightbox.min.css">
-    <style>
-      
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-           
+<style>
+      .user-detail-form{
+            display: flex;
+            flex-direction: column;
+            /* gap: 16px; */
+            width: 60%;
+            /* margin-bottom: 40px; */
         }
 
+        .user-detail-form form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .user-detail-form .input{
+               width: 90%;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+        }
+        .user-detail-form .inputt{
+               width: 90%;
+    display: flex;
+    gap: 10px;
+        }
+        .user-detail-form .inputt input[type=checkbox]{
+                /* width: 100%; */
+    padding: 16px 10px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+        }
+        .user-detail-form .input input{
+                width: 100%;
+    padding: 16px 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+        }
+        .user-detail-form .input textarea{
+                width: 100%;
+    padding: 16px 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+        }
+        .user-detail-form .input input:focus{
+               outline: none;
+               border: 1px solid #24aca6;
+        }
 
+        @media (max-width: 575px) {
+    .user-detail-form{
+            width: 100%;
+        }
+    }
+
+    iframe{
+        border-radius:20px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+    /* Team */
+
+    .main{
+     width: 100%;
+     /* height: 100vh; */
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   }
+   .profile-card{
+     position: relative;
+     font-family: sans-serif;
+     width: 220px;
+     height: 220px;
+     background: #fff;
+     padding: 30px;
+     border-radius: 50%;
+     box-shadow: 0 0 22px #3336;
+     transition: .6s;
+     margin: 0 25px;
+   }
+   .profile-card:hover{
+     border-radius: 10px;
+     height: 260px;
+   }
+   .profile-card .img{
+     position: relative;
+     width: 100%;
+     height: 100%;
+     transition: .6s;
+     z-index: 99;
+   }
+   .profile-card:hover .img{
+     transform: translateY(-60px);
+   }
+   .img img{
+     width: 100%;
+     border-radius: 50%;
+     box-shadow: 0 0 22px #3336;
+     transition: .6s;
+   }
+   .profile-card:hover img{
+     border-radius: 10px;
+   }
+   .caption{
+     text-align: center;
+     transform: translateY(-80px);
+     opacity: 0;
+     transition: .6s;
+   }
+   .profile-card:hover .caption{
+     opacity: 1;
+   }
+   .caption h3{
+     font-size: 21px;
+     font-family: sans-serif;
+   }
+   .caption p{
+     font-size: 15px;
+     color: #0c52a1;
+     font-family: sans-serif;
+     margin: 2px 0 9px 0;
+   }
+   .caption .social-links a{
+     color: #333;
+     margin-right: 15px;
+     font-size: 21px;
+     transition: .6s;
+   }
+   .social-links a:hover{
+     color: #0c52a1;
+   }
 
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo"><a href="/"><img src=" images/footer_logo.png" alt=""></a></div>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item" id="offices">
-                    <a href="#" class="nav-link">For Offices</a>
-                    <div class="dropdown">
-                        <a href=" office_meal_prog.html" class="dropdown-item">Office Meal Programs</a>
-                        <!-- <a href="#" class="dropdown-item">On Demand Catering</a> -->
-                        <a href=" managed-catering.html" class="dropdown-item">Managed Catering + Events</a>
-                    </div>
-                </li>
-                
-                <li class="nav-item" id="restaurants">
-                    <a href="#" class="nav-link">For Restaurants</a>
-                    <div class="dropdown">
-                        <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/register" class="dropdown-item">Restaurant Sign In</a>
-                        <a href=" restaurants-signup.html" class="dropdown-item">Sign Up Your Restaurant</a>
-                    </div>
-                </li>
-                
-                <li class="nav-item" id="about">
-                    <a href="#" class="nav-link">About Us</a>
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-item">About CaterLoop</a>
-                        <a href="#" class="dropdown-item">Blog</a>
-                    </div>
-                </li>
-               
-                
-                <li class="nav-item" id="login">
-                    <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/login" class="nav-link user">Hi, Jitesh Sharma</a>
-                    <div class="dropdown">
-                        <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/login" class="dropdown-item">Profile</a>
-                        <a target="_blank" href="https://lightcoral-skunk-800431.hostingersite.com/login" class="dropdown-item">Logout</a>
-                    </div>
-                </li>
-
-                 <li class="nav-item" id="about">
-                    <a href="#" class="nav-link login">Login</a>
-                </li>
-                <li class="nav-item" id="about">
-                    <a href="#" class="get-started">Get Started</a>
-                </li>
-            </ul>
-            
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-
-    <div class="overlay" id="overlay"></div>
-
-
-
     <main>
-    
+         
         <section class="hero pt-5 mt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-5">
                         <div class="labeled d-flex justify-content-around align-items-center my-2">
-                            <img src="office-meal/canada.webp" alt="" width="20px" height="20px">
+                            <img src="{{asset('frontend/images/pages/canada.webp')}}" alt="" width="20px" height="20px">
                             <p>Delivery from more than 350 restaurants</p>
                         </div>
                     </div>
                     <div class="col-lg-5">
                         <div class="labeled d-flex justify-content-around align-items-center my-2">
                             <p class="text-blue">4.7</p>
-                            <img src="office-meal/stars.png" alt=""  width="100px" height="20px">
-                            <img src="office-meal/google.webp" alt=""  width="25px" height="20px">
+                            <img src="{{asset('frontend/images/pages/stars.png')}}" alt=""  width="100px" height="20px">
+                            <img src="{{asset('frontend/images/pages/google.webp')}}" alt=""  width="25px" height="20px">
                             <p class="text-blue">380+ Google reviews</p>
                         </div>
                     </div>
                 </div>
                 <div class="hero_details text-center">
-                <h1 class="pt-5 text-center">Uncatering </h1>
-                <p class="fw-bolder text-center">Order individually. Eat as a team.</p>
-                <p class="text-center">Empower your employees with the best possible way to order lunches as part of a meal plan solution for your office.</p>
+                <h1 class="pt-5 text-center fs-bold">Catering for the future of work</h1>
+                <p class="text-center">Our services provide ease of use and ease of mind.
+Our solutions are built with the flexibility that the new normal dictates - our mission is to make food at work the best possible experience for every person taking a bite out of every meal.</p>
 
-                <div class="hero__btn">
+                <!-- <div class="hero__btn">
                      <a href="/lastform.html" class="btn hero-btn">Build a sample meal plan</a>
-                     </div>
+                     </div> -->
 
-                     <img src=" office-meal/mockup.webp" alt="" style="width: 30%;">
+                     <img src=" {{asset('frontend/images/pages/about.webp')}}" alt="" style="width: 30%;">
             </div>
             </div>
         </section>
 
-        <section class="meal_plan py-5">
-            <div class="container">
-                <h2 class="text-center py-4">How the meal plan of the future works...</h2>
-                <div class="row">
-                    <div class="col-lg-6 d-flex align-items-center">
-                        <div class="details">
-                        <span class="blue_text">Step 1</span>
-                        <h3 class="py-3">Create an account for your workplace and add your team members</h3>
-                        <p>Set a daily, weekly, or meeting/event specific budgets.</p>
-                    </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="images d-flex justify-content-end"><img src=" office-meal/login.webp" alt=""></div></div>
-                </div>
-                <div class="row py-5">
-                    <div class="col-lg-6">
-                        <div class="images"><img src=" office-meal/vegan.webp" alt=""></div></div>
-                    <div class="col-lg-6 d-flex align-items-center">
-                        <div class="details">
-                        <span class="blue_text">Step 2</span>
-                        <h3 class="py-3">Team members individually choose and customize meals</h3>
-                        <p>From a rotation of restaurants, there’s something for everyone.From diets such as Gluten-free or Vegan to taste preferences like “No onions”, “Extra cheese” and “dressing on the side.</p>
-                    </div>
-                    </div>
-                    
-                </div>
-                <div class="row py-5">
-                   
-                    <div class="col-lg-6 d-flex align-items-center">
-                        <div class="details">
-                        <span class="blue_text">Step 3</span>
-                        <h3 class="py-3">Meals delivered, each in a sealed package labelled with a name</h3>
-                        <p>hungerhub’s own team members deliver meals in easily identifiable packaging, meaning less headache for you and peace of mind for the rest of the team.</p>
-                    </div>
-                    </div>
-                     <div class="col-lg-6">
-                        <div class="images d-flex justify-content-end"><img src=" office-meal/package.webp" alt=""></div></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="order_features">
-            <div class="container">
-                <h3 class="text-center fw-bolder">Order your lunch by 10:30 am from your city’s best restaurants and have it delivered to your office. Every day.</h3>
-                <p class="text-center">If you're providing your teams with regular lunches, empower them with the flexibility and satisfaction of ordering individually boxed meals from your city's best restaurants.</p>
-                <p class="text-center">It's the most cost-effective option too, we'll prove it 😊</p>
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="d-flex justify-content-center align-items-center flex-column">
-                        <img src=" office-meal/costomized.webp" alt="">
-                        <h4 class="text-center pt-4 pb-3">Fully Customized</h4>
-                        <p class="text-center">Empower your team to customize meals from based on available options; such as size, protein choice, and add-ons with their dietary restrictions and allergies in mind.</p>
-                    </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="d-flex justify-content-center align-items-center flex-column">
-                        <img src=" office-meal/individually.webp" alt="">
-                        <h4 class="text-center pt-4 pb-3">Individually Packaged</h4>
-                        <p class="text-center">Meals arrive in a sealed and labelled package with their name on it, no one has to touch other people’s food scoop food out of a tray.</p>
-                    </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="d-flex justify-content-center align-items-center flex-column">
-                        <img src=" office-meal/time.webp" alt="">
-                        <h4 class="text-center pt-4 pb-3">Delivered on time</h4>
-                        <p class="text-center">Track your delivery in real time, and rest assured that your food is arriving on time and delivered by hungerhub’s own team.</p>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 <section class="py-5">
     <div class="container">
-        <h3 class="text-center">My office orders food on a regular basis, how is Uncatering™ different?</h3>
-
-        <div class="row">
-            <div class="col-lg-4"></div>
-        </div>
+        <h3 class="text-center fw-bold">Catering, an industry due for an upgrade</h3>
+        <p class="text-center fw-bold">An industry that has never seen change is due for meaningful disruption. Technology  and modernization have yet to make an impact on the world of catering. Until now</p>
+        <p class="text-center">By empowering restaurants with the tools and technology they need to become caterers, we are able to increase their order volume and realize our goal of supporting local businesses. For our clients and customers, we make it possible for them to order from and enjoy a large variety of food from their favourite local restaurants, and not the same caterer, every day.</p>
     </div>
 </section>
-
 <section class="py-5">
-    
+    <div class="container">
+        <h2 class="text-center fw-bold">Meet our Team</h2>
+       <div class="row pt-5">
+        <div class="col-lg-3 py-4 d-flex justify-content-center">
+        <div class="profile-card">
+            <div class="img">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/028/569/170/small/single-man-icon-people-icon-user-profile-symbol-person-symbol-businessman-stock-vector.jpg">
+            </div>
+            <div class="caption">
+                <h3>User</h3>
+                <p>Designation</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-3 py-4 d-flex justify-content-center">
+        <div class="profile-card">
+            <div class="img">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/028/569/170/small/single-man-icon-people-icon-user-profile-symbol-person-symbol-businessman-stock-vector.jpg">
+            </div>
+            <div class="caption">
+                <h3>User</h3>
+                <p>Designation</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-3 py-4 d-flex justify-content-center">
+        <div class="profile-card">
+            <div class="img">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/028/569/170/small/single-man-icon-people-icon-user-profile-symbol-person-symbol-businessman-stock-vector.jpg">
+            </div>
+            <div class="caption">
+                <h3>User</h3>
+                <p>Designation</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-3 py-4 d-flex justify-content-center">
+        <div class="profile-card">
+            <div class="img">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/028/569/170/small/single-man-icon-people-icon-user-profile-symbol-person-symbol-businessman-stock-vector.jpg">
+            </div>
+            <div class="caption">
+                <h3>User</h3>
+                <p>Designation</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-3 py-4 d-flex justify-content-center">
+        <div class="profile-card">
+            <div class="img">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/028/569/170/small/single-man-icon-people-icon-user-profile-symbol-person-symbol-businessman-stock-vector.jpg">
+            </div>
+            <div class="caption">
+                <h3>User</h3>
+                <p>Designation</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-3 py-4 d-flex justify-content-center">
+        <div class="profile-card">
+            <div class="img">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/028/569/170/small/single-man-icon-people-icon-user-profile-symbol-person-symbol-businessman-stock-vector.jpg">
+            </div>
+            <div class="caption">
+                <h3>User</h3>
+                <p>Designation</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-3 py-4 d-flex justify-content-center">
+        <div class="profile-card">
+            <div class="img">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/028/569/170/small/single-man-icon-people-icon-user-profile-symbol-person-symbol-businessman-stock-vector.jpg">
+            </div>
+            <div class="caption">
+                <h3>User</h3>
+                <p>Designation</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-3 py-4 d-flex justify-content-center">
+        <div class="profile-card">
+            <div class="img">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/028/569/170/small/single-man-icon-people-icon-user-profile-symbol-person-symbol-businessman-stock-vector.jpg">
+            </div>
+            <div class="caption">
+                <h3>User</h3>
+                <p>Designation</p>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    </div>
+</section>
+ <section class="pt-5">    
 <div class="section_caterloop" style=" background-image: url(assets/img/hero/banner.png); background-position: center; background-repeat: no-repeat; background-size: contain;">
     <div class="container">
     <div class="row">
         <div class="col-sm-12 col-lg-6 col-md-12"></div>
         <div class="col-sm-12 col-lg-6 col-md-12">
-            <div class="details ">
+            <div class="details">
                 <h3>Not sure which solution is the right one for you?</h3>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis laborum magni ut molestias? Error voluptas ipsam, modi excepturi doloribus vero.</p>
                 <div class="email_btn px-4">
@@ -248,7 +341,7 @@
 </div>
 </div>
 </section>
-<div class="site-footer">
+  <div class="site-footer">
 		<div class="container">
 
 			<div class="row">
@@ -356,7 +449,7 @@ M5T 1X5</a></li>
 					<div class="widget">
 						
 						<ul class="list-unstyled float-left links" style="width: 100%;">
-							<li><a href="#">Copyright hungerhub All Right reserved</a></li>
+							<li><a href="#">Copyright caterloop All Right reserved</a></li>
 						</ul>
 					</div> <!-- /.widget -->
 				</div> <!-- /.col-lg-3 -->
@@ -463,6 +556,6 @@ function toggleFaq(element) {
     <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
     
     <script src="./assets/js/main.js"></script>
-    
+   
 </body>
 </html>
