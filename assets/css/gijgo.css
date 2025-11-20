@@ -348,7 +348,7 @@ ul.gj-list-md li.disabled>[data-role="wrapper"]>[data-role="display"] {
 .gj-picker-md [role="header"] {
     color: rgba(255, 255, 255, 0.54);
     display: flex;
-    background: #f3a9cc;
+    background: #24aca6;
     align-items: baseline;
     user-select: none;
     justify-content: center;
@@ -360,7 +360,7 @@ ul.gj-list-md li.disabled>[data-role="wrapper"]>[data-role="display"] {
 }
 
 .gj-picker-md [role="footer"] button.gj-button-md {
-    color: #f3a9cc;
+    color: #24aca6;
     font-weight: bold;
     font-size: 13px;
 }
@@ -2389,14 +2389,14 @@ ul.gj-list-md li.disabled > [data-role="wrapper"] > [data-role="expander"] {
 }
 
 .gj-picker-md .arrow-begin {
-    background-color: #f3a9cc;
+    background-color: #24aca6;
 }
 .gj-picker-md .arrow-end {
-    border: 16px solid #f3a9cc;
+    border: 16px solid #24aca6;
 }
 
 .gj-picker-md [role="body"] [role="arrow"] {
-    background-color: #f3a9cc;
+    background-color: #24aca6;
 }
 
 /* Bootstrap */
@@ -2542,7 +2542,7 @@ ul.gj-list-md li.disabled > [data-role="wrapper"] > [data-role="expander"] {
 
 .gj-picker-md [role="switch"] {
     color: rgba(255, 255, 255, 0.54);
-    background: #f3a9cc;
+    background: #24aca6;
     font-size: 32px;
 }
 

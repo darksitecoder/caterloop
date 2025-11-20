@@ -37,15 +37,69 @@
 	<link rel="stylesheet" href="css/flatpickr.min.css">
 	<link rel="stylesheet" href="css/glightbox.min.css">
     <style>
-      
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-           
+      .user-detail-form{
+            display: flex;
+            flex-direction: column;
+            /* gap: 16px; */
+            width: 60%;
+            /* margin-bottom: 40px; */
         }
 
+        .user-detail-form form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .user-detail-form .input{
+               width: 90%;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+        }
+        .user-detail-form .inputt{
+               width: 90%;
+    display: flex;
+    gap: 10px;
+        }
+        .user-detail-form .inputt input[type=checkbox]{
+                /* width: 100%; */
+    padding: 16px 10px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+        }
+        .user-detail-form .input input{
+                width: 100%;
+    padding: 16px 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+        }
+        .user-detail-form .input textarea{
+                width: 100%;
+    padding: 16px 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+        }
+        .user-detail-form .input input:focus{
+               outline: none;
+               border: 1px solid #24aca6;
+        }
 
-
+        @media (max-width: 575px) {
+    .user-detail-form{
+            width: 100%;
+        }
+    }
     </style>
 </head>
 <body>
@@ -131,91 +185,59 @@
                     </div>
                 </div>
                 <div class="hero_details text-center">
-                <h1 class="pt-5 text-center">Uncatering </h1>
-                <p class="fw-bolder text-center">Order individually. Eat as a team.</p>
-                <p class="text-center">Empower your employees with the best possible way to order lunches as part of a meal plan solution for your office.</p>
+                <h1 class="pt-5 text-center fs-bold">Contact Us</h1>
+                <p class="text-center">The best way to get in touch with us is by starting a chat with one of our live agents...Look for the chat button on the bottom corner of your screen.</p>
 
-                <div class="hero__btn">
+                <!-- <div class="hero__btn">
                      <a href="/lastform.html" class="btn hero-btn">Build a sample meal plan</a>
-                     </div>
+                     </div> -->
 
-                     <img src=" office-meal/mockup.webp" alt="" style="width: 30%;">
+                     <img src=" office-meal/contact.png" alt="" style="width: 30%;">
             </div>
             </div>
         </section>
 
         <section class="meal_plan py-5">
             <div class="container">
-                <h2 class="text-center py-4">How the meal plan of the future works...</h2>
+                <!-- <h2 class="text-center py-4">How the meal plan of the future works...</h2> -->
                 <div class="row">
-                    <div class="col-lg-6 d-flex align-items-center">
-                        <div class="details">
-                        <span class="blue_text">Step 1</span>
-                        <h3 class="py-3">Create an account for your workplace and add your team members</h3>
-                        <p>Set a daily, weekly, or meeting/event specific budgets.</p>
+                    <div class="col-lg-12 d-flex align-items-center justify-content-center">
+                          <div class="user-detail-form">
+                   <form id="userForm">
+                    <div class="input">
+                        <input type="text" name="name" id="name" placeholder="Full Name*" required>
                     </div>
+                    <div class="input">
+                        <input type="text" name="company_name" id="company_name" placeholder="Company Name*" required>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="images d-flex justify-content-end"><img src=" office-meal/login.webp" alt=""></div></div>
+                    <div class="input">
+                        <input type="email" name="email" id="email" placeholder="Email*" required>
+                    </div>
+                    <div class="input">
+                        <input type="tel" name="phone" id="phone" placeholder="Phone Number*" required>
+                    </div>
+                    <div class="input">
+                        <textarea rows="" cols="10" placeholder="Message*" required></textarea>
+                    </div>
+                    <div class="input">
+                        <p>Do you agree to receive text messages from caterloop sent from our system? Message frequency varies and may include transactional updates such as order confirmations, delivery updates, and estimated time of arrival (ETA). Message and data rates may apply. Reply STOP at any time to end or unsubscribe. For assistance, reply HELP or send us a message at (647) 689-5084 or info@caterloop.com.
+</p>
+                    </div>
+                    <div class="inputt d-flex align-items-center justify-content-start text-start">
+                        <input type="checkbox" name="yes" id=""> <p>Yes, I agree to receive text messages from Caterloop from (789) 7846-9462</p>
+                    </div>
+                    <div class="inputt d-flex align-items-center justify-content-start text-start">
+                        <input type="checkbox" name="no" id=""> <p>No, I do not want to receive text messages from caterloop.</p>
+                    </div>
+                    <div class=" pt-4">
+                        <button type="submit" class="btn hero-btn">Submit</button>
+                    </div>
+                   </form>
                 </div>
-                <div class="row py-5">
-                    <div class="col-lg-6">
-                        <div class="images"><img src=" office-meal/vegan.webp" alt=""></div></div>
-                    <div class="col-lg-6 d-flex align-items-center">
-                        <div class="details">
-                        <span class="blue_text">Step 2</span>
-                        <h3 class="py-3">Team members individually choose and customize meals</h3>
-                        <p>From a rotation of restaurants, there’s something for everyone.From diets such as Gluten-free or Vegan to taste preferences like “No onions”, “Extra cheese” and “dressing on the side.</p>
-                    </div>
-                    </div>
-                    
-                </div>
-                <div class="row py-5">
-                   
-                    <div class="col-lg-6 d-flex align-items-center">
-                        <div class="details">
-                        <span class="blue_text">Step 3</span>
-                        <h3 class="py-3">Meals delivered, each in a sealed package labelled with a name</h3>
-                        <p>hungerhub’s own team members deliver meals in easily identifiable packaging, meaning less headache for you and peace of mind for the rest of the team.</p>
-                    </div>
-                    </div>
-                     <div class="col-lg-6">
-                        <div class="images d-flex justify-content-end"><img src=" office-meal/package.webp" alt=""></div></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="order_features">
-            <div class="container">
-                <h3 class="text-center fw-bolder">Order your lunch by 10:30 am from your city’s best restaurants and have it delivered to your office. Every day.</h3>
-                <p class="text-center">If you're providing your teams with regular lunches, empower them with the flexibility and satisfaction of ordering individually boxed meals from your city's best restaurants.</p>
-                <p class="text-center">It's the most cost-effective option too, we'll prove it 😊</p>
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="d-flex justify-content-center align-items-center flex-column">
-                        <img src=" office-meal/costomized.webp" alt="">
-                        <h4 class="text-center pt-4 pb-3">Fully Customized</h4>
-                        <p class="text-center">Empower your team to customize meals from based on available options; such as size, protein choice, and add-ons with their dietary restrictions and allergies in mind.</p>
-                    </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="d-flex justify-content-center align-items-center flex-column">
-                        <img src=" office-meal/individually.webp" alt="">
-                        <h4 class="text-center pt-4 pb-3">Individually Packaged</h4>
-                        <p class="text-center">Meals arrive in a sealed and labelled package with their name on it, no one has to touch other people’s food scoop food out of a tray.</p>
-                    </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="d-flex justify-content-center align-items-center flex-column">
-                        <img src=" office-meal/time.webp" alt="">
-                        <h4 class="text-center pt-4 pb-3">Delivered on time</h4>
-                        <p class="text-center">Track your delivery in real time, and rest assured that your food is arriving on time and delivered by hungerhub’s own team.</p>
-                    </div>
                     </div>
                 </div>
-            </div>
-        </section>
+                </div>
+               
 <section class="py-5">
     <div class="container">
         <h3 class="text-center">My office orders food on a regular basis, how is Uncatering™ different?</h3>
@@ -356,7 +378,7 @@ M5T 1X5</a></li>
 					<div class="widget">
 						
 						<ul class="list-unstyled float-left links" style="width: 100%;">
-							<li><a href="#">Copyright hungerhub All Right reserved</a></li>
+							<li><a href="#">Copyright caterloop All Right reserved</a></li>
 						</ul>
 					</div> <!-- /.widget -->
 				</div> <!-- /.col-lg-3 -->
@@ -463,6 +485,6 @@ function toggleFaq(element) {
     <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
     
     <script src="./assets/js/main.js"></script>
-    
+   
 </body>
 </html>
