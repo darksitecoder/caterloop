@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slick Form with Pickers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        input {
+            padding: 18px 24px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 15px;
+            background: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            color: #6b7280;
+            min-width: 200px;
+        }
+
+        input:focus {
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+        }
+
+        input::placeholder {
+            color: #9ca3af;
+        }
+
+        .picker-input {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 20px;
+            color: #9ca3af;
+            pointer-events: none;
+        }
+
+        .input-with-icon {
+            padding-left: 50px;
+        }
+
+        .submit-btn {
+            padding: 18px 40px;
+            background: #14b8a6;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: #0d9488;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(20, 184, 166, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .picker-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-10px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .picker-dropdown.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        /* Date Picker Styles */
+        .date-picker {
+            width: 320px;
+            padding: 20px;
+        }
+
+        .date-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .date-header button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #14b8a6;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .date-header button:hover {
+            background: #f0fdfa;
+        }
+
+        .month-year {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 15px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .day-name {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #9ca3af;
+            padding: 8px 0;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .day:hover {
+            background: #f0fdfa;
+        }
+
+        .day.selected {
+            background: #14b8a6;
+            color: white;
+        }
+
+        .day.today {
+            border: 2px solid #14b8a6;
+        }
+
+        .day.empty {
+            cursor: default;
+        }
+
+        /* Time Picker Styles */
+        .time-picker {
+            width: 300px;
+            padding: 20px;
+        }
+
+        .time-display {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .time-mode {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .mode-btn {
+            padding: 8px 20px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .mode-btn.active {
+            background: #14b8a6;
+            color: white;
+            border-color: #14b8a6;
+        }
+
+        .clock-container {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .clock-face {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #f9fafb;
+            position: relative;
+        }
+
+        .clock-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: #14b8a6;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .clock-hand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 80px;
+            background: #14b8a6;
+            transform-origin: bottom center;
+            transform: translate(-50%, -100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 5;
+        }
+
+        .clock-number {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .clock-number:hover {
+            background: #f0fdfa;
+        }
+
+        .clock-number.selected {
+            background: #14b8a6;
+            color: white;
+        }
+
+        .period-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .period-btn {
+            padding: 10px 30px;
+            border: none;
+            background: #f3f4f6;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .period-btn.active {
+            background: #14b8a6;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            input {
+                width: 100%;
+            }
+            
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form class="form-container" id="mainForm">
+        <div class="form-group">
+            <div class="input-wrapper">
+                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <input type="text" id="name" class="input-with-icon" placeholder="Enter location" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="text" id="date" class="picker-input" placeholder="Date" readonly required>
+            <div class="picker-dropdown date-picker" id="datePicker">
+                <div class="date-header">
+                    <button type="button" id="prevMonth">&lt;</button>
+                    <span class="month-year" id="monthYear"></span>
+                    <button type="button" id="nextMonth">&gt;</button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="text" id="time" class="picker-input" placeholder="Time" readonly required>
+            <div class="picker-dropdown time-picker" id="timePicker">
+                <div class="time-display" id="timeDisplay">12:00 PM</div>
+                <div class="time-mode">
+                    <button type="button" class="mode-btn active" id="hourMode">Hour</button>
+                    <button type="button" class="mode-btn" id="minuteMode">Minute</button>
+                </div>
+                <div class="clock-container">
+                    <div class="clock-face" id="clockFace">
+                        <div class="clock-center"></div>
+                        <div class="clock-hand" id="clockHand"></div>
+                    </div>
+                </div>
+                <div class="period-toggle">
+                    <button type="button" class="period-btn" id="amBtn">AM</button>
+                    <button type="button" class="period-btn active" id="pmBtn">PM</button>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Book Now</button>
+    </form>
+
+    <script>
+        // State
+        let selectedDate = new Date();
+        let selectedHour = 12;
+        let selectedMinute = 0;
+        let isPM = true;
+        let isSelectingMinutes = false;
+
+        // Elements
+        const dateInput = document.getElementById('date');
+        const timeInput = document.getElementById('time');
+        const datePicker = document.getElementById('datePicker');
+        const timePicker = document.getElementById('timePicker');
+        const calendarGrid = document.getElementById('calendarGrid');
+        const monthYear = document.getElementById('monthYear');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const clockFace = document.getElementById('clockFace');
+        const clockHand = document.getElementById('clockHand');
+        const hourMode = document.getElementById('hourMode');
+        const minuteMode = document.getElementById('minuteMode');
+        const amBtn = document.getElementById('amBtn');
+        const pmBtn = document.getElementById('pmBtn');
+
+        // Date Picker Functions
+        function renderCalendar() {
+            const year = selectedDate.getFullYear();
+            const month = selectedDate.getMonth();
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = new Date();
+
+            monthYear.textContent = selectedDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+            const dayNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+            let html = '';
+
+            dayNames.forEach(day => {
+                html += `<div class="day-name">${day}</div>`;
+            });
+
+            for (let i = 0; i < firstDay; i++) {
+                html += '<div class="day empty"></div>';
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const isToday = today.getDate() === day && 
+                               today.getMonth() === month && 
+                               today.getFullYear() === year;
+                const isSelected = selectedDate.getDate() === day;
+                const classes = `day ${isToday ? 'today' : ''} ${isSelected ? 'selected' : ''}`;
+                html += `<div class="${classes}" onclick="selectDate(${day})">${day}</div>`;
+            }
+
+            calendarGrid.innerHTML = html;
+        }
+
+        function selectDate(day) {
+            selectedDate.setDate(day);
+            dateInput.value = selectedDate.toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
+            renderCalendar();
+            datePicker.classList.remove('active');
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            selectedDate.setMonth(selectedDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            selectedDate.setMonth(selectedDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        // Time Picker Functions
+        function renderClock() {
+            const numbers = isSelectingMinutes ? 
+                Array.from({length: 12}, (_, i) => i * 5) : 
+                Array.from({length: 12}, (_, i) => i === 0 ? 12 : i);
+
+            let html = '<div class="clock-center"></div><div class="clock-hand" id="clockHand"></div>';
+
+            numbers.forEach((num, i) => {
+                const angle = (i * 30 - 90) * Math.PI / 180;
+                const radius = 90;
+                const x = 120 + radius * Math.cos(angle);
+                const y = 120 + radius * Math.sin(angle);
+
+                const isSelected = isSelectingMinutes ? 
+                    selectedMinute === num : 
+                    selectedHour === num;
+
+                html += `<div class="clock-number ${isSelected ? 'selected' : ''}" 
+                    style="left: ${x - 18}px; top: ${y - 18}px"
+                    onclick="selectTime(${num})">${num}</div>`;
+            });
+
+            clockFace.innerHTML = html;
+            updateClockHand();
+            updateTimeDisplay();
+        }
+
+        function selectTime(value) {
+            if (isSelectingMinutes) {
+                selectedMinute = value;
+            } else {
+                selectedHour = value;
+                // Switch to minute mode after selecting hour
+                isSelectingMinutes = true;
+                hourMode.classList.remove('active');
+                minuteMode.classList.add('active');
+            }
+            renderClock();
+        }
+
+        function updateClockHand() {
+            const hand = document.getElementById('clockHand');
+            const value = isSelectingMinutes ? selectedMinute : selectedHour;
+            const angle = isSelectingMinutes ? 
+                (value * 6 - 90) : 
+                ((value === 12 ? 0 : value) * 30 - 90);
+            hand.style.transform = `translate(-50%, -100%) rotate(${angle}deg)`;
+        }
+
+        function updateTimeDisplay() {
+            const displayHour = selectedHour === 0 ? 12 : selectedHour;
+            const displayMinute = selectedMinute.toString().padStart(2, '0');
+            const period = isPM ? 'PM' : 'AM';
+            const timeStr = `${displayHour}:${displayMinute} ${period}`;
+            timeDisplay.textContent = timeStr;
+            timeInput.value = timeStr;
+        }
+
+        hourMode.addEventListener('click', () => {
+            isSelectingMinutes = false;
+            hourMode.classList.add('active');
+            minuteMode.classList.remove('active');
+            renderClock();
+        });
+
+        minuteMode.addEventListener('click', () => {
+            isSelectingMinutes = true;
+            minuteMode.classList.add('active');
+            hourMode.classList.remove('active');
+            renderClock();
+        });
+
+        amBtn.addEventListener('click', () => {
+            isPM = false;
+            amBtn.classList.add('active');
+            pmBtn.classList.remove('active');
+            updateTimeDisplay();
+        });
+
+        pmBtn.addEventListener('click', () => {
+            isPM = true;
+            pmBtn.classList.add('active');
+            amBtn.classList.remove('active');
+            updateTimeDisplay();
+        });
+
+        // Toggle Pickers
+        dateInput.addEventListener('click', (e) => {
+            e.stopPropagation();
+            datePicker.classList.toggle('active');
+            timePicker.classList.remove('active');
+        });
+
+        timeInput.addEventListener('click', (e) => {
+            e.stopPropagation();
+            timePicker.classList.toggle('active');
+            datePicker.classList.remove('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!datePicker.contains(e.target) && e.target !== dateInput) {
+                datePicker.classList.remove('active');
+            }
+            if (!timePicker.contains(e.target) && e.target !== timeInput) {
+                timePicker.classList.remove('active');
+            }
+        });
+
+        // Form Submit
+        document.getElementById('mainForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const location = document.getElementById('name').value;
+            const date = dateInput.value;
+            const time = timeInput.value;
+            alert(`Booking Confirmed!\nLocation: ${location}\nDate: ${date}\nTime: ${time}`);
+        });
+
+        // Initialize
+        renderCalendar();
+        renderClock();
+    </script>
+</body>
+</html>

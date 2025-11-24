@@ -1011,12 +1011,25 @@
 
                 <div class="question">When would you like to start?</div>
 
-                <div style="margin: 20px 0;">
-                    <span class="date-input">
-                        <span>📅</span> Select date
-                    </span>
-                    <button class="time-btn" data-value="not-sure">I am not sure yet</button>
-                </div>
+<div style="margin: 20px 0;">
+    <span class="date-input" id="startDateBtn">
+        <span>📅</span> Select date
+    </span>
+    <button class="time-btn" id="notSureBtn" data-value="not-sure">I am not sure yet</button>
+</div>
+
+<!-- Start Date Calendar Container -->
+<div class="calendar-container" id="startDateCalendarContainer">
+    <div class="calendars-wrapper" id="startDateCalendarsWrapper">
+        <!-- Single month calendar will be generated here -->
+    </div>
+    <div class="selected-dates-summary" id="startDateSummary" style="display: none;">
+        <h4>Selected Start Date:</h4>
+        <div class="selected-dates-list" id="startDateDisplay">
+            <span style="color: #666;">No date selected</span>
+        </div>
+    </div>
+</div>
 
                 <div class="question">Meal allowance per user</div>
 
@@ -1958,6 +1971,172 @@
 
         updateCarousel();
 
+        // Start Date Calendar functionality
+const startDateBtn = document.getElementById('startDateBtn');
+const startDateCalendarContainer = document.getElementById('startDateCalendarContainer');
+const notSureBtn = document.getElementById('notSureBtn');
+
+if (startDateBtn) {
+    startDateBtn.addEventListener('click', function() {
+        const isActive = startDateCalendarContainer.classList.contains('active');
+        if (isActive) {
+            startDateCalendarContainer.classList.remove('active');
+        } else {
+            startDateCalendarContainer.classList.add('active');
+            generateStartDateCalendar();
+            // Deselect "not sure" button
+            if (notSureBtn) notSureBtn.classList.remove('selected');
+            formData.startDate = '';
+        }
+    });
+}
+
+if (notSureBtn) {
+    notSureBtn.addEventListener('click', function() {
+        this.classList.toggle('selected');
+        if (this.classList.contains('selected')) {
+            formData.startDate = 'not-sure';
+            startDateCalendarContainer.classList.remove('active');
+            // Update button text
+            startDateBtn.innerHTML = '<span>📅</span> Select date';
+        } else {
+            formData.startDate = '';
+        }
+    });
+}
+
+function generateStartDateCalendar() {
+    const calendarsWrapper = document.getElementById('startDateCalendarsWrapper');
+    calendarsWrapper.innerHTML = '';
+
+    const today = new Date();
+    createStartDateCalendar(today, calendarsWrapper, today);
+}
+
+function createStartDateCalendar(date, container, today) {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+
+    const calendar = document.createElement('div');
+    calendar.className = 'calendar';
+
+    const header = document.createElement('div');
+    header.className = 'calendar-header';
+    header.textContent = `${monthNames[month]} ${year}`;
+    calendar.appendChild(header);
+
+    const weekdays = document.createElement('div');
+    weekdays.className = 'calendar-weekdays';
+    ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day => {
+        const dayEl = document.createElement('div');
+        dayEl.className = 'calendar-weekday';
+        dayEl.textContent = day;
+        weekdays.appendChild(dayEl);
+    });
+    calendar.appendChild(weekdays);
+
+    const daysContainer = document.createElement('div');
+    daysContainer.className = 'calendar-days';
+
+    for (let i = 0; i < firstDay; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'calendar-day empty';
+        daysContainer.appendChild(emptyDay);
+    }
+
+    // Minimum date is today
+    const minSelectable = new Date(today);
+    minSelectable.setHours(0, 0, 0, 0);
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayDate = new Date(year, month, day);
+        dayDate.setHours(0, 0, 0, 0);
+        const dayEl = document.createElement('div');
+        dayEl.className = 'calendar-day';
+        dayEl.textContent = day;
+
+        if (dayDate < minSelectable) {
+            dayEl.classList.add('disabled');
+        } else {
+            const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            
+            if (formData.startDate === dateString) {
+                dayEl.classList.add('selected');
+            }
+
+            dayEl.addEventListener('click', function() {
+                if (dayDate < minSelectable) return;
+
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                // Clear previous selection
+                const allDays = daysContainer.querySelectorAll('.calendar-day');
+                allDays.forEach(d => d.classList.remove('selected'));
+                
+                // Select this date
+                this.classList.add('selected');
+                formData.startDate = dateStr;
+                
+                // Update button text
+                const date = new Date(dateStr + 'T00:00:00');
+                const formatted = date.toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+                startDateBtn.innerHTML = `<span>📅</span> ${formatted}`;
+                
+                updateStartDateSummary();
+                
+                // Deselect "not sure" button
+                if (notSureBtn) notSureBtn.classList.remove('selected');
+            });
+        }
+
+        daysContainer.appendChild(dayEl);
+    }
+
+    calendar.appendChild(daysContainer);
+    container.appendChild(calendar);
+}
+
+function updateStartDateSummary() {
+    const summaryDiv = document.getElementById('startDateSummary');
+    const displayDiv = document.getElementById('startDateDisplay');
+    
+    if (!formData.startDate || formData.startDate === 'not-sure') {
+        summaryDiv.style.display = 'none';
+        return;
+    }
+
+    summaryDiv.style.display = 'block';
+    const date = new Date(formData.startDate + 'T00:00:00');
+    const formatted = date.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric', 
+        year: 'numeric' 
+    });
+
+    displayDiv.innerHTML = `
+        <div class="selected-date-tag">
+            ${formatted}
+            <span class="remove-date" style="cursor: pointer;">✕</span>
+        </div>
+    `;
+
+    displayDiv.querySelector('.remove-date').addEventListener('click', function() {
+        formData.startDate = '';
+        startDateBtn.innerHTML = '<span>📅</span> Select date';
+        generateStartDateCalendar();
+        updateStartDateSummary();
+    });
+}
+
         // Form submit handler: collect visible form fields and merge with step data (formData)
         (function attachFormSubmit() {
             const userForm = document.getElementById('userForm');
@@ -2040,6 +2219,9 @@
                 }
             });
         })();
+
+
+
     </script>
 </body>
 </html>

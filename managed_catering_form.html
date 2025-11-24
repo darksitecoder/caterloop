@@ -290,6 +290,38 @@
             to { opacity: 1; }
         }
 
+         .multiple-select-continue {
+            margin-top: 30px;
+            padding: 16px 40px;
+            font-size: 15px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .multiple-select-continue.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .multiple-select-continue:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255,255,255,0.3);
+        }
+
+
         .completion-text {
             font-size: 42px;
             font-weight: 700;
@@ -720,9 +752,9 @@
              { type: 'text', question: 'What is your total catering budget', label: 'Write you budget', icon: 'celebration' },
              { type: 'text', question: 'Your kitchen amenities', helper: 'What do you have available on-site', label: 'Write what you have available', icon: 'celebration' },
               { 
-                type: 'checkbox', 
+                type: 'multiple-select', 
                 question: 'Rental needs',helper: 'Choose as many as you like',
-                options: ['Glassware', 'Silverware/Plates', 'Tablecloths']
+                options: ['Glassware', 'Silverware/Plates', 'Tablecloths', 'Other']
             },
               { 
                 type: 'options', 
@@ -746,6 +778,7 @@
           
         ];
 
+        
         const answers = {};
         let currentQuestion = 0;
         let currentCalendarDate = new Date();
@@ -908,14 +941,48 @@
                 let inputHTML = '';
                 
                 if (q.type === 'options') {
+                    const hasOther = q.options.includes('Other');
                     inputHTML = `
                         <div class="options-container">
                             ${q.options.map((opt, i) => `
-                                <button class="option-btn" data-value="${opt}" onclick="selectOption(${index}, ${i}, '${opt.replace(/'/g, "\\'")}')">
+                                <button class="option-btn" data-value="${opt}" onclick="selectOption(${index}, ${i}, '${opt.replace(/'/g, "\\'")}', ${hasOther})">
                                     ${opt}
                                 </button>
                             `).join('')}
                         </div>
+                        ${hasOther ? `
+                            <div class="other-input-container" id="other-container-${index}">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">edit</i>
+                                    <input type="text" id="other-input-${index}" oninput="handleOtherInput(${index}, 'single')" />
+                                    <label for="other-input-${index}">Please specify</label>
+                                </div>
+                            </div>
+                        ` : ''}
+                    `;
+                } else if (q.type === 'multiple-select') {
+                    const hasOther = q.options.includes('Other');
+                    inputHTML = `
+                        <div class="options-container">
+                            ${q.options.map((opt, i) => `
+                                <button class="option-btn checkbox-style" data-value="${opt}" onclick="toggleMultipleOption(${index}, ${i}, '${opt.replace(/'/g, "\\'")}', ${hasOther})">
+                                    ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                        ${hasOther ? `
+                            <div class="other-input-container" id="other-container-${index}">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">edit</i>
+                                    <input type="text" id="other-input-${index}" oninput="handleOtherInput(${index}, 'multiple')" />
+                                    <label for="other-input-${index}">Please specify other option</label>
+                                </div>
+                            </div>
+                        ` : ''}
+                        <button class="multiple-select-continue" id="continue-${index}" onclick="continueFromMultipleSelect(${index})">
+                            Continue
+                            <span class="material-icons">arrow_downward</span>
+                        </button>
                     `;
                 } else if (q.type === 'textarea') {
                     inputHTML = `
@@ -1021,7 +1088,7 @@
                         <div class="question-number">Question ${index + 1} → ${questions.length}</div>
                         <div class="question-text">${q.question}</div>
                         ${inputHTML}
-                        ${q.type !== 'options' ? `<button class="continue-btn" id="continue-${index}" onclick="validateAndContinue(${index})">
+                        ${(q.type !== 'options' && q.type !== 'multiple-select') ? `<button class="continue-btn" id="continue-${index}" onclick="validateAndContinue(${index})">
                             Continue
                             <span class="material-icons">arrow_downward</span>
                         </button>` : ''}
@@ -1117,14 +1184,97 @@
             nextQuestion();
         }
 
-        function selectOption(questionIndex, optionIndex, value) {
+        function selectOption(questionIndex, optionIndex, value, hasOther) {
             const buttons = document.querySelectorAll(`#question-${questionIndex} .option-btn`);
             buttons.forEach(btn => btn.classList.remove('selected'));
             buttons[optionIndex].classList.add('selected');
             
-            answers[questionIndex] = value;
+            if (hasOther && value === 'Other') {
+                document.getElementById(`other-container-${questionIndex}`).classList.add('active');
+                M.updateTextFields();
+                answers[questionIndex] = null;
+            } else {
+                if (hasOther) {
+                    document.getElementById(`other-container-${questionIndex}`).classList.remove('active');
+                }
+                answers[questionIndex] = value;
+                setTimeout(() => nextQuestion(), 600);
+            }
+        }
+
+        function toggleMultipleOption(questionIndex, optionIndex, value, hasOther) {
+            const button = document.querySelectorAll(`#question-${questionIndex} .option-btn`)[optionIndex];
+            button.classList.toggle('selected');
             
-            setTimeout(() => nextQuestion(), 600);
+            if (!answers[questionIndex]) {
+                answers[questionIndex] = [];
+            }
+            
+            if (value === 'Other' && hasOther) {
+                if (button.classList.contains('selected')) {
+                    document.getElementById(`other-container-${questionIndex}`).classList.add('active');
+                    M.updateTextFields();
+                } else {
+                    document.getElementById(`other-container-${questionIndex}`).classList.remove('active');
+                    const otherInput = document.getElementById(`other-input-${questionIndex}`);
+                    if (otherInput && otherInput.value) {
+                        answers[questionIndex] = answers[questionIndex].filter(item => item !== otherInput.value);
+                    }
+                }
+            } else {
+                if (button.classList.contains('selected')) {
+                    if (!answers[questionIndex].includes(value)) {
+                        answers[questionIndex].push(value);
+                    }
+                } else {
+                    answers[questionIndex] = answers[questionIndex].filter(item => item !== value);
+                }
+            }
+            
+            const continueBtn = document.getElementById(`continue-${questionIndex}`);
+            if (answers[questionIndex] && answers[questionIndex].length > 0) {
+                continueBtn.classList.add('visible');
+            } else {
+                continueBtn.classList.remove('visible');
+            }
+        }
+
+        function handleOtherInput(index, type) {
+            const otherInput = document.getElementById(`other-input-${index}`);
+            const value = otherInput.value.trim();
+            
+            if (type === 'single') {
+                if (value) {
+                    answers[index] = value;
+                    setTimeout(() => nextQuestion(), 600);
+                }
+            } else if (type === 'multiple') {
+                if (!answers[index]) {
+                    answers[index] = [];
+                }
+                
+                const existingOther = answers[index].find(item => !questions[index].options.includes(item) && item !== 'Other');
+                if (existingOther) {
+                    answers[index] = answers[index].filter(item => item !== existingOther);
+                }
+                
+                if (value) {
+                    answers[index].push(value);
+                }
+                
+                const continueBtn = document.getElementById(`continue-${index}`);
+                if (answers[index] && answers[index].length > 0) {
+                    continueBtn.classList.add('visible');
+                } else {
+                    continueBtn.classList.remove('visible');
+                }
+            }
+        }
+
+        function continueFromMultipleSelect(index) {
+            if (answers[index] && answers[index].length > 0) {
+                nextQuestion();
+            }
         }
 
         function nextQuestion() {
@@ -1151,59 +1301,5 @@
         initProgressBar();
         initQuestions();
     </script>
-
-    <!-- ...existing code... -->
-    <script>
-        // ...existing code...
-async function completeQuestionnaire() {
-    // Hide the questions
-
-    document.getElementById('questionsWrapper').style.display = 'none';
-    
-    // Show completion UI immediately
-    const completionScreen = document.getElementById('completionScreen');
-    completionScreen.classList.add('active');
-
-    // Add a content container if missing
-    let completionContent = completionScreen.querySelector('.completion-content');
-    if (!completionContent) {
-        completionContent = document.createElement('div');
-        completionContent.className = 'completion-content';
-        completionScreen.appendChild(completionContent);
-    }
-
-    completionContent.innerHTML = `
-        <div class="checkmark"><i class="material-icons">check</i></div>
-        <div class="completion-text">Thanks — sending your order…</div>
-        <div class="completion-subtext">Please wait while we submit your details.</div>
-    `;
-
-    // Prepare payload
-    const payload = {
-        answers,
-        submittedAt: new Date().toISOString()
-    };
-console.log('Payload:', JSON.stringify(payload, null, 2));
-
-    const endpoint = '#'; 
-
-    try {
-        const result = await sendFormData(endpoint, payload);
-        completionContent.querySelector('.checkmark').style.backgroundColor = '#00BD2A';
-        completionContent.querySelector('.checkmark').innerHTML = '<i class="material-icons">check</i>';
-        completionContent.querySelector('.completion-text').textContent = 'Order sent!';
-        completionContent.querySelector('.completion-subtext').textContent = 'We received your request.';
-        console.log('Server response:', result);
-    } catch (err) {
-        completionContent.querySelector('.checkmark').style.backgroundColor = '#CF0000';
-        completionContent.querySelector('.checkmark').innerHTML = '<i class="material-icons">close</i>';
-        completionContent.querySelector('.completion-text').textContent = 'Submission failed';
-        completionContent.querySelector('.completion-subtext').textContent = 'Please try again or contact support.';
-        console.error('Submission error:', err);
-    }
-}
-
-    </script>
-<!-- ...existing code... -->
 </body>
 </html>
