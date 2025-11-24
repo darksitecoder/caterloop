@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caterloop Blog Details</title>
+     <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+     <div id="detailPage" class="">
+      <div class="detail-header" id="detailHeader">
+    <img id="detailHeroImage" 
+         src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800" 
+         alt="Tropical Cuisine: A Culinary Journey">
+
+    <div class="detail-overlay"></div>
+
+    <button class="back-button" onclick="showListing()">← Back to Blog</button>
+
+    <div class="detail-info">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <span class="category-badge" id="detailCategory">Food</span>
+
+            <h1 id="detailTitle">Tropical Cuisine: A Culinary Journey</h1>
+
+            <div class="detail-meta" id="detailMeta">
+                <span>👤 Carlos Santos</span>
+                <span>📅 Nov 18, 2024</span>
+                <span>🕐 7 min read</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div class="article-content">
+            <article class="article-main">
+                <div class="article-text">
+                    <p id="detailExcerpt" style="font-size: 1.3rem; color: #4b5563;"></p>
+                    
+                    <h2>The Journey Begins</h2>
+                    <p>The tropical paradise has always been a source of inspiration for travelers and adventurers alike. With its pristine beaches, crystal-clear waters, and lush greenery, it offers an escape from the mundane and a connection to nature that is increasingly rare in our modern world.</p>
+
+                    <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800" alt="Tropical scenery" class="article-image">
+
+                    <h2>Discovering Hidden Gems</h2>
+                    <p>Beyond the popular tourist destinations lie countless hidden treasures waiting to be discovered. These secluded spots offer tranquility, authentic experiences, and a chance to connect with local cultures in meaningful ways. From secret beaches accessible only by boat to mountain trails that lead to breathtaking vistas, the adventure never ends.</p>
+
+                    <blockquote class="quote">
+                        "The ocean stirs the heart, inspires the imagination, and brings eternal joy to the soul." - Ancient Island Proverb
+                    </blockquote>
+
+                    <h2>Embracing the Island Life</h2>
+                    <p>Living in harmony with nature is not just a philosophy but a way of life in the tropics. The gentle rhythm of the waves, the warm tropical breeze, and the vibrant colors of sunset create a symphony that nourishes the soul. This lifestyle teaches us the importance of slowing down, appreciating simple pleasures, and finding balance in our daily lives.</p>
+
+                    <div class="takeaways">
+                        <h3>Key Takeaways</h3>
+                        <ul>
+                            <li><span>🌺</span> Embrace the natural beauty around you</li>
+                            <li><span>🌊</span> Find peace in the rhythm of the ocean</li>
+                            <li><span>🌴</span> Connect with local cultures and traditions</li>
+                            <li><span>☀️</span> Live sustainably and protect the environment</li>
+                        </ul>
+                    </div>
+
+                    <p>Whether you're seeking adventure, relaxation, or spiritual growth, the tropical paradise offers something for everyone. The memories created here will last a lifetime, and the lessons learned will continue to inspire long after you've returned home.</p>
+                </div>
+
+                <div class="labels-section">
+                    <h4>Labels:</h4>
+                    <div class="labels-blog-blog-container" id="detailLabels">
+                        <span class="label-tag">#Beach</span>
+<span class="label-tag">#Adventure</span>
+<span class="label-tag">#Nature</span>
+
+                    </div>
+                </div>
+            </article>
+
+            <aside class="sidebar">
+
+                <div class="sidebar-section categories slide-in-right">
+                    <h3 class="sidebar-title">🏷️ Categories</h3>
+                    <div class="category-list" id="categoryList">
+                        <div class="category-item">
+    <span>Travel</span><span>→</span>
+</div>
+
+<div class="category-item">
+    <span>Food</span><span>→</span>
+</div>
+
+<div class="category-item">
+    <span>Wellness</span><span>→</span>
+</div>
+
+<div class="category-item">
+    <span>Environment</span><span>→</span>
+</div>
+
+<div class="category-item">
+    <span>Culture</span><span>→</span>
+</div>
+
+<div class="category-item">
+    <span>Adventure</span><span>→</span>
+</div>
+
+                    </div>
+                </div>
+                
+                <!-- Recent Posts -->
+                <div class="sidebar-section slide-in-right">
+                    <h3 class="sidebar-title">📚 Recent Posts</h3>
+                    <div id="recentPosts">
+                        <!-- Recent Post 1 -->
+<div class="recent-post" onclick="showDetail(1)">
+    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800" 
+         alt="Paradise Found: Discovering Hidden Beaches" 
+         class="recent-image">
+    <div>
+        <div class="recent-title">Paradise Found: Discovering Hidden Beaches</div>
+        <div class="recent-date">Nov 20, 2024</div>
+    </div>
+</div>
+
+<!-- Recent Post 2 -->
+<div class="recent-post" onclick="showDetail(2)">
+    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800" 
+         alt="Tropical Cuisine: A Culinary Journey" 
+         class="recent-image">
+    <div>
+        <div class="recent-title">Tropical Cuisine: A Culinary Journey</div>
+        <div class="recent-date">Nov 18, 2024</div>
+    </div>
+</div>
+
+<!-- Recent Post 3 -->
+<div class="recent-post" onclick="showDetail(3)">
+    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800" 
+         alt="Island Wellness: Mind, Body, Spirit" 
+         class="recent-image">
+    <div>
+        <div class="recent-title">Island Wellness: Mind, Body, Spirit</div>
+        <div class="recent-date">Nov 15, 2024</div>
+    </div>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Categories in detail page -->
+                <div class="sidebar-section categories slide-in-right" style="animation-delay: 0.1s">
+                    <h3 class="sidebar-title">🏷️ Categories</h3>
+                    <div class="labels-blog-blog-container" id="detailCategories">
+                        <span class="label-tag">Travel</span>
+<span class="label-tag">Food</span>
+<span class="label-tag">Wellness</span>
+<span class="label-tag">Environment</span>
+<span class="label-tag">Culture</span>
+<span class="label-tag">Adventure</span>
+
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+</body>
+</html>
