@@ -343,7 +343,7 @@ a{
             top: 25%;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
+            display: none;
             gap: 8px;
             z-index: 1000;
             padding: 0 20px;
@@ -359,9 +359,8 @@ a{
             border-radius: 2px;
             transition: all 0.4s ease;
         }
-
         .progress-dash.completed {
-            background: #4CAF50;
+            background: #24aca6;
             box-shadow: 0 0 10px rgba(76, 175, 80, 0.6);
         }
 
@@ -372,11 +371,11 @@ a{
         }
 
         .question-container {
-            height: 50vh;
+            /* height: fit-content; */
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 80px 20px 40px;
+            padding: 20px 20px 40px;
             position: absolute;
             width: 100%;
             opacity: 0;
@@ -393,6 +392,10 @@ a{
         }
 
         .question-content {
+            display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
             max-width: 700px;
             width: 100%;
         }
@@ -407,20 +410,23 @@ a{
         }
 
         .question-text {
-            font-size: 32px;
+            font-size: 20px;
             font-weight: 600;
             margin-bottom: 40px;
             line-height: 1.3;
             letter-spacing: -0.5px;
+            color:#003f5b;
         }
 
         .input-field {
             margin-bottom: 20px;
+            display: flex;
+            flex-direction: column-reverse;
         }
 
         .input-field input:not([type="date"]):not([type="time"]),
         .input-field textarea.materialize-textarea {
-            color: #000000 !important;
+            color: #003f5b !important;
             border-bottom: 2px solid rgba(0, 0, 0, 0.3) !important;
             font-size: 18px !important;
             padding-left: 3rem !important;
@@ -428,33 +434,36 @@ a{
 
         .input-field input:not([type="date"]):not([type="time"]):focus,
         .input-field textarea.materialize-textarea:focus {
-            border-bottom: 2px solid #000000 !important;
-            box-shadow: 0 1px 0 0 #000000 !important;
+            border-bottom: 2px solid #003f5b !important;
+            box-shadow: 0 1px 0 0 #003f5b !important;
         }
 
         .input-field label {
-            color: rgba(0, 0, 0, 0.5) !important;
+            color: #003f5b !important;
             font-size: 16px !important;
             left: 3rem !important;
         }
 
         .input-field label.active {
-            color: #000000 !important;
+            color: #003f5b !important;
         }
 
         .input-field .prefix {
-            color: rgba(0, 0, 0, 0.5);
+            color: #003f5b;
             font-size: 24px;
+                top: 43%;
+    position: absolute;
+    display: none;
         }
 
         .input-field .prefix.active {
-            color: #000000;
+            color: #003f5b;
         }
 
         .input-field input.valid,
         .input-field textarea.materialize-textarea.valid {
-            border-bottom: 2px solid #4CAF50 !important;
-            box-shadow: 0 1px 0 0 #4CAF50 !important;
+            border-bottom: 2px solid #24aca6 !important;
+            box-shadow: 0 1px 0 0 #24aca6 !important;
         }
 
         .input-field input.invalid,
@@ -470,16 +479,16 @@ a{
         }
 
         .options-container {
-            display: flex;
+            display: grid;
             gap: 14px;
         }
 
         .option-btn {
             padding: 20px 24px;
             font-size: 17px;
-            background: rgba(182, 182, 182, 0.03);
+            background: #ebf0f2;
             border: 2px solid rgba(0, 0, 0, 0.15);
-            color: #000000;
+            color: #003f5b;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -497,7 +506,7 @@ a{
             top: 0;
             height: 100%;
             width: 4px;
-            background: #4CAF50;
+            background: #24aca6;
             transform: scaleY(0);
             transition: transform 0.3s ease;
         }
@@ -510,7 +519,7 @@ a{
 
         .option-btn.selected {
             background: rgba(205, 205, 205, 0.15);
-            border-color: #4CAF50;
+            border-color: #24aca6;
         }
 
         .option-btn.selected::before {
@@ -521,14 +530,14 @@ a{
             margin-top: 30px;
             padding: 16px 40px;
             font-size: 15px;
-            background: #000000;
+            background: #24aca6;
             color: #ffffff;
             border: none;
-            border-radius: 12px;
+            border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
-            opacity: 0;
+            opacity: 1;
             pointer-events: none;
             font-family: 'Inter', sans-serif;
             letter-spacing: 0.5px;
@@ -604,6 +613,38 @@ a{
             to { opacity: 1; }
         }
 
+         .multiple-select-continue {
+            margin-top: 30px;
+            padding: 16px 40px;
+            font-size: 15px;
+          background: #24aca6;
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 1;
+            pointer-events: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .multiple-select-continue.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .multiple-select-continue:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255,255,255,0.3);
+        }
+
+
         .completion-text {
             font-size: 42px;
             font-weight: 700;
@@ -631,7 +672,7 @@ a{
 
         .custom-calendar {
             display: none;
-            background: rgba(0, 0, 0, 0.95);
+            background: #003f5b;
             color: #ffffff;
             border-radius: 16px;
             padding: 20px;
@@ -644,8 +685,8 @@ a{
                display: block;
     position: absolute;
     animation: slideUp 0.3s ease;
-    top: 20%;
-    right: 30%;
+    top: 10%;
+    right: 0%;
         }
 
         @keyframes slideUp {
@@ -706,7 +747,7 @@ a{
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #000000;
+            background: #003f5b;
             border-radius: 8px;
             cursor: pointer;
             color: #ffffff;
@@ -716,13 +757,13 @@ a{
         }
 
         .calendar-day:hover:not(.disabled):not(.empty) {
-            background: #4CAF50;
+            background: #24aca6;
             color: rgb(0, 0, 0);
             transform: scale(1.1);
         }
 
         .calendar-day.selected {
-            background: #4CAF50;
+            background: #24aca6;
             color: rgb(0, 0, 0);
             font-weight: 600;
         }
@@ -799,8 +840,8 @@ a{
         }
 
         .time-btn {
-            background: #4CAF50;
-            color: rgb(0, 0, 0);
+            background: #24aca6;
+            color: rgba(255, 255, 255, 1);
             border: none;
             width: 40px;
             height: 40px;
@@ -813,7 +854,7 @@ a{
         }
 
         .time-btn:hover {
-            background: #45a049;
+            background: #24aca6;
             transform: scale(1.1);
         }
 
@@ -840,9 +881,9 @@ a{
         }
 
         .period-btn.active {
-            background: #4CAF50;
+            background: #24aca6;
             color: rgb(0, 0, 0);
-            border-color: #4CAF50;
+            border-color: #24aca6;
         }
 
         .clock-confirm {
@@ -865,7 +906,7 @@ a{
 
         .custom-input-display {
             color: #000000 !important;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3) !important;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.48) !important;
             font-size: 18px !important;
             padding: 12px 0 12px 3rem !important;
             cursor: pointer;
@@ -873,11 +914,11 @@ a{
         }
 
         .custom-input-display:hover {
-            border-bottom: 2px solid rgba(255, 255, 255, 0.5) !important;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.62) !important;
         }
 
         .custom-input-display.filled {
-            border-bottom: 2px solid #4CAF50 !important;
+            border-bottom: 2px solid #24aca6 !important;
         }
 
         @media (min-width: 768px) and (max-width: 1024px) {
@@ -886,7 +927,7 @@ a{
             }
 
             .progress-dash {
-                width: 14px;
+                width: 5%;
                 height: 4px;
             }
 
@@ -903,12 +944,12 @@ a{
             }
 
             .progress-dash {
-                width: 8px;
+                width: 5%;
                 height: 3px;
             }
 
             .question-container {
-                padding: 70px 30px 30px;
+                padding: 30px 30px 30px;
             }
 
             .question-number {
@@ -981,7 +1022,7 @@ a{
             }
 
             .progress-dash {
-                width: 16px;
+                width: 5%;
                 height: 5px;
             }
 
@@ -1068,10 +1109,10 @@ a{
                 <div class="row">
                 <div class="col-lg-7 d-flex align-items-center">
                     <div>
-                    <h1>Managed Catering + Events</h1>
-                    <p class="py-3">Simplify and improve your corporate catering with access to hundreds of restaurants, caterers and options that are only one click, email or phone call away.</p>
+                    <h1>Sign up your restaurant for Corporate Catering</h1>
+                    <p class="py-3">All restaurants can be caterers, and you should be one too. hungerhub provides the tools, technology and infrastructure to enable your restaurant to become a corporate catering provider</p>
                      <div class="hero__btn">
-                     <a href="#" class="btn hero-btn fw-bold">Tell us about your event</a>
+                     <button id="openModalBtn" type="button" class="btn hero-btn">Get Started</button>
                      </div>
                      </div>
                 </div>
@@ -1082,17 +1123,17 @@ a{
     
         <section class="hero">
             <div class="container">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-lg-12 d-flex justify-content-center">
                         <div class="labeled d-flex justify-content-around align-items-center my-2">
-                            <img src="office-meal/canada.webp" alt="" width="20px" height="20px">
+                            <img src="office-meal/canada.webp" alt="" class="mx-2" width="20px" height="20px">
                             <p>Delivery from more than 350 local restaurants</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="hero_details text-center">
                 <h1 class="pt-5 text-center">Expand sales to a new segment of customers</h1>
-                <p class=" text-center">Uncatering™, hungerhub’s workplace food delivery platform generates demand for large and bulk order opportunities for your restaurant from our existing and expanding client base, and on a consistent and reliable basis.</p>
+                <p class=" text-center">Loopcatering™, hungerhub’s workplace food delivery platform generates demand for large and bulk order opportunities for your restaurant from our existing and expanding client base, and on a consistent and reliable basis.</p>
                      <img src=" office-meal/mockup.webp" alt="" style="width: 30%;">
 
                      
@@ -1189,28 +1230,32 @@ a{
 
       
 
-<section class="py-5">
-    
-<div class="section_caterloop" style=" background-image: url(assets/img/hero/banner.png); background-position: center; background-repeat: no-repeat; background-size: contain;">
-    <div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-lg-6 col-md-12"></div>
-        <div class="col-sm-12 col-lg-6 col-md-12">
-            <div class="details ">
-                <h3>Not sure which solution is the right one for you?</h3>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis laborum magni ut molestias? Error voluptas ipsam, modi excepturi doloribus vero.</p>
-                <div class="email_btn px-4">
-                    <input type="email" name="" id="" placeholder="Write Your Email">
-                    <div class="hero__btn">
-                     <a class="btn hero-btn">Book a Call</a>
-                     </div>
+ <section class="">
+
+        <div class="section_caterloop"
+            style=" background: #ebf0f2; background-position: center; background-repeat: no-repeat; background-size: cover;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6 col-md-12"></div>
+                    <div class="col-sm-12 col-lg-12 col-md-12">
+                        <div class="details ">
+                            <h3 class="text-center">Not sure which solution is the right one for you?</h3>
+                            <p class="text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br> Reiciendis laborum magni ut
+                                molestias? Error voluptas ipsam, modi excepturi doloribus vero.</p>
+                            <div class="w-100 d-flex justify-content-center">
+                                <div class="email_btn px-4">
+                                <input type="email" name="" id="" placeholder="Write Your Email">
+                                <div class="hero__btn">
+                                    <a href="#" class="btn hero-btn">Book a Call</a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</div>
-</section>
+    </section>
 
 <div class="site-footer">
 		<div class="container">
@@ -1493,48 +1538,18 @@ function toggleFaq(element) {
  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         const questions = [
-            { type: 'date', question: 'What day is your event or catering requirement ?', label: 'Select date', icon: 'event', required: true },
-            { 
-                type: 'options', 
-                question: 'Type of service',
-                options: ['Hors d oeuvres / appetizers', 'Shared meal trays', 'Individual meal boxes']
-            },
-            { type: 'number', question: 'How many people are you looking to provide catering for ?', label: 'Enter your the number of person', icon: 'person', required: true },
-             { 
-                type: 'options', 
-                question: 'Budget',
-                options: ['I have a per person budget', 'I have total budget for the event']
-            },
 
-             { type: 'text', question: 'What is your total catering budget', label: 'Write you budget', icon: 'celebration' },
-             { type: 'text', question: 'Your kitchen amenities', helper: 'What do you have available on-site', label: 'Write what you have available', icon: 'celebration' },
-              { 
-                type: 'checkbox', 
-                question: 'Rental needs',helper: 'Choose as many as you like',
-                options: ['Glassware', 'Silverware/Plates', 'Tablecloths']
-            },
-              { 
-                type: 'options', 
-                question: 'Beverages',helper: 'Choose as many as you like',
-                options: ['Beverage station', 'Bar', 'Coffee/Tea', 'None']
-            },
+             { type: 'text', question: 'Restaurant Name', label: 'Write here',placeholder:'Write Name', icon: 'celebration', required: true, },
+             { type: 'text', question: 'What is your restaurant address', label: 'Write here', icon: 'restaurant_menu', required: true, },
+             { type: 'text', question: 'What is your restaurant website?', label: 'Write here', icon: 'restaurant_menu', required: true, },
+              { type: 'text', question: 'Your Name (First & Last)', label: 'Your name', icon: 'person' },
 
-             { type: 'text', question: 'Name of you organization?', label: 'Write your organization name', icon: 'restaurant_menu' },
-             { type: 'text', question: 'Address', label: 'Where will the catering be delivered to ?', icon: 'restaurant_menu' },
-             { type: 'text', question: 'Your first name', label: 'Your first name', icon: 'person' },
-             { type: 'text', question: 'Your last name', label: 'Your last name', icon: 'person' },
-             
-             { type: 'email', question: 'What\'s your email address?', label: 'name@example.com', icon: 'email', required: true, validation: 'email' },
-             { type: 'text', question: 'What is your role ? ', label: 'Your role', icon: 'person' },
-
-
-            { type: 'tel', question: 'What\'s your phone number?', label: '+1 (555) 000-0000', icon: 'phone', required: true, validation: 'phone' },
-            
-            
-            { type: 'time', question: 'What time works best for you?', label: 'Select time', helper: 'We\'re open from 11:00 AM to 11:00 PM', icon: 'access_time', required: true }
+               { type: 'email', question: 'What\'s your email address?', label: 'name@example.com', icon: 'email', required: true, validation: 'email' },
+             { type: 'tel', question: 'What\'s your phone number?', label: '+1 (555) 000-0000', icon: 'phone', required: true, validation: 'phone' }
           
         ];
 
+        
         const answers = {};
         let currentQuestion = 0;
         let currentCalendarDate = new Date();
@@ -1697,14 +1712,48 @@ function toggleFaq(element) {
                 let inputHTML = '';
                 
                 if (q.type === 'options') {
+                    const hasOther = q.options.includes('Other');
                     inputHTML = `
                         <div class="options-container">
                             ${q.options.map((opt, i) => `
-                                <button class="option-btn" data-value="${opt}" onclick="selectOption(${index}, ${i}, '${opt.replace(/'/g, "\\'")}')">
+                                <button class="option-btn" data-value="${opt}" onclick="selectOption(${index}, ${i}, '${opt.replace(/'/g, "\\'")}', ${hasOther})">
                                     ${opt}
                                 </button>
                             `).join('')}
                         </div>
+                        ${hasOther ? `
+                            <div class="other-input-container" id="other-container-${index}">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">edit</i>
+                                    <input type="text" id="other-input-${index}" oninput="handleOtherInput(${index}, 'single')" />
+                                    <label for="other-input-${index}">Please specify</label>
+                                </div>
+                            </div>
+                        ` : ''}
+                    `;
+                } else if (q.type === 'multiple-select') {
+                    const hasOther = q.options.includes('Other');
+                    inputHTML = `
+                        <div class="options-container">
+                            ${q.options.map((opt, i) => `
+                                <button class="option-btn checkbox-style" data-value="${opt}" onclick="toggleMultipleOption(${index}, ${i}, '${opt.replace(/'/g, "\\'")}', ${hasOther})">
+                                    ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                        ${hasOther ? `
+                            <div class="other-input-container" id="other-container-${index}">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">edit</i>
+                                    <input type="text" id="other-input-${index}" oninput="handleOtherInput(${index}, 'multiple')" />
+                                    <label for="other-input-${index}">Please specify other option</label>
+                                </div>
+                            </div>
+                        ` : ''}
+                        <button class="multiple-select-continue" id="continue-${index}" onclick="continueFromMultipleSelect(${index})">
+                            Continue
+                            <span class="material-icons">arrow_downward</span>
+                        </button>
                     `;
                 } else if (q.type === 'textarea') {
                     inputHTML = `
@@ -1791,7 +1840,7 @@ function toggleFaq(element) {
                             </div>
                             <button class="clock-confirm" onclick="confirmTime(${index})">Confirm Time</button>
                         </div>
-                        ${q.helper ? `<span class="helper-text">${q.helper}</span>` : ''}
+                        ${q.helper ? `<div class="helper-text">${q.helper}</div>` : ''}
                         <div class="error-message" id="error-${index}"></div>
                     `;
                 } else {
@@ -1810,7 +1859,7 @@ function toggleFaq(element) {
                         <div class="question-number">Question ${index + 1} → ${questions.length}</div>
                         <div class="question-text">${q.question}</div>
                         ${inputHTML}
-                        ${q.type !== 'options' ? `<button class="continue-btn" id="continue-${index}" onclick="validateAndContinue(${index})">
+                        ${(q.type !== 'options' && q.type !== 'multiple-select') ? `<button class="continue-btn" id="continue-${index}" onclick="validateAndContinue(${index})">
                             Continue
                             <span class="material-icons">arrow_downward</span>
                         </button>` : ''}
@@ -1906,14 +1955,97 @@ function toggleFaq(element) {
             nextQuestion();
         }
 
-        function selectOption(questionIndex, optionIndex, value) {
+        function selectOption(questionIndex, optionIndex, value, hasOther) {
             const buttons = document.querySelectorAll(`#question-${questionIndex} .option-btn`);
             buttons.forEach(btn => btn.classList.remove('selected'));
             buttons[optionIndex].classList.add('selected');
             
-            answers[questionIndex] = value;
+            if (hasOther && value === 'Other') {
+                document.getElementById(`other-container-${questionIndex}`).classList.add('active');
+                M.updateTextFields();
+                answers[questionIndex] = null;
+            } else {
+                if (hasOther) {
+                    document.getElementById(`other-container-${questionIndex}`).classList.remove('active');
+                }
+                answers[questionIndex] = value;
+                setTimeout(() => nextQuestion(), 600);
+            }
+        }
+
+        function toggleMultipleOption(questionIndex, optionIndex, value, hasOther) {
+            const button = document.querySelectorAll(`#question-${questionIndex} .option-btn`)[optionIndex];
+            button.classList.toggle('selected');
             
-            setTimeout(() => nextQuestion(), 600);
+            if (!answers[questionIndex]) {
+                answers[questionIndex] = [];
+            }
+            
+            if (value === 'Other' && hasOther) {
+                if (button.classList.contains('selected')) {
+                    document.getElementById(`other-container-${questionIndex}`).classList.add('active');
+                    M.updateTextFields();
+                } else {
+                    document.getElementById(`other-container-${questionIndex}`).classList.remove('active');
+                    const otherInput = document.getElementById(`other-input-${questionIndex}`);
+                    if (otherInput && otherInput.value) {
+                        answers[questionIndex] = answers[questionIndex].filter(item => item !== otherInput.value);
+                    }
+                }
+            } else {
+                if (button.classList.contains('selected')) {
+                    if (!answers[questionIndex].includes(value)) {
+                        answers[questionIndex].push(value);
+                    }
+                } else {
+                    answers[questionIndex] = answers[questionIndex].filter(item => item !== value);
+                }
+            }
+            
+            const continueBtn = document.getElementById(`continue-${questionIndex}`);
+            if (answers[questionIndex] && answers[questionIndex].length > 0) {
+                continueBtn.classList.add('visible');
+            } else {
+                continueBtn.classList.remove('visible');
+            }
+        }
+
+        function handleOtherInput(index, type) {
+            const otherInput = document.getElementById(`other-input-${index}`);
+            const value = otherInput.value.trim();
+            
+            if (type === 'single') {
+                if (value) {
+                    answers[index] = value;
+                    setTimeout(() => nextQuestion(), 600);
+                }
+            } else if (type === 'multiple') {
+                if (!answers[index]) {
+                    answers[index] = [];
+                }
+                
+                const existingOther = answers[index].find(item => !questions[index].options.includes(item) && item !== 'Other');
+                if (existingOther) {
+                    answers[index] = answers[index].filter(item => item !== existingOther);
+                }
+                
+                if (value) {
+                    answers[index].push(value);
+                }
+                
+                const continueBtn = document.getElementById(`continue-${index}`);
+                if (answers[index] && answers[index].length > 0) {
+                    continueBtn.classList.add('visible');
+                } else {
+                    continueBtn.classList.remove('visible');
+                }
+            }
+        }
+
+        function continueFromMultipleSelect(index) {
+            if (answers[index] && answers[index].length > 0) {
+                nextQuestion();
+            }
         }
 
         function nextQuestion() {
